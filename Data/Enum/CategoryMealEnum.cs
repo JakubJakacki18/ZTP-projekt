@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ZTP_projekt.Data.Enum
 {
-	internal enum CategoryEnum
+	internal enum CategoryMealEnum
 	{
-		MEAT,
-		VEGETABLE,
-		FRUIT,
-		DAIRY,
-		BAKERY,
-		SPICE,
+		BREAKFAST,
+		BRUNCH,
+		LUNCH,
+		DINNER,
+		DESSERT,
 		OTHER
 	}
+
 }

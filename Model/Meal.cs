@@ -8,12 +8,12 @@ using ZTP_projekt.Interface;
 
 namespace ZTP_projekt.Model
 {
-	internal class Ingredient : IMealComposite
+	internal class Meal : IMealComposite
 	{
 		int id;
 		string name;
-		CategoryIngredientEnum categoryEnym;
-		int quantity;
+		List<Recipe> recipes;
+		CategoryMealEnum categoryMeal;
 
 		public void Display()
 		{
