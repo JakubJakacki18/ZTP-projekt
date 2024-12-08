@@ -9,10 +9,10 @@ namespace ZTP_projekt.Model
         private static Dictionary<int, MealPlan> instances = new();
         private readonly List<IObserver> observers = new();
 
-        private int id;
-        private DateOnly startDate;
-        private DateOnly endDate;
-        private List<MealDay> mealDays = new();
+        public int id { get; set; }
+        public DateOnly startDate { get; set; }
+		public DateOnly endDate { get; set; }
+		private List<MealDay> mealDays = new();
 
         public List<MealDay> MealDays => mealDays;
 
