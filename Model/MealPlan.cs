@@ -66,6 +66,14 @@ namespace ZTP_projekt.Model
                 observer.Update();
             }
         }
+        public void SaveToFile() 
+        {
+        
+        }
+		public void LoadFromFile()
+		{
 
-    }
+		}
+
+	}
 }
