@@ -19,12 +19,19 @@ namespace ZTP_projekt.Model
             Calories = calories;
         }
 
-        public void AddIngredient(Ingredient ingredient)
+        public void AddIngredient(Ingredient ingredient, int calories)
         {
             Ingredients.Add(ingredient);
         }
-
-        public void Display()
+        public void ChangeIngredient(int numberOfIngredient, Ingredient ingredient, int calories)
+		{
+			throw new NotImplementedException();
+		}
+        public void RemoveIngredient(int numberOfIngredient) 
+        {
+            throw new NotImplementedException();
+		}
+		public void Display()
         {
             throw new NotImplementedException();
         }

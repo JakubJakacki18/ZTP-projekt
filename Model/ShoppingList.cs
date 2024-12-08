@@ -17,5 +17,10 @@ namespace ZTP_projekt.Model
             Id = id;
             Ingredients = new Dictionary<CategoryIngredientEnum, List<Ingredient>>();
         }
-    }
+
+        public void ShowShoppingList()
+		{
+			throw new NotImplementedException();
+		}
+	}
 }
