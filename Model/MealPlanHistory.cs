@@ -24,7 +24,18 @@ namespace ZTP_projekt.Model
 		{
 
 		}
+		public MealPlan GetMealPlan(int numberOfMealPlan)
+		{
+			return mealPlans[numberOfMealPlan];
+		}
+		public void SaveToFile()
+		{
 
+		}
+		public void LoadFromFile()
+		{
+
+		}
 
 
 

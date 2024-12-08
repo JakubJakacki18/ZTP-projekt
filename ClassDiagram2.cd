@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="ZTP_projekt.Interface.ICalculate">
+    <Position X="5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\ICalculate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ZTP_projekt.Interface.ICloneable">
+    <Position X="8.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Interface\ICloneable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ZTP_projekt.Interface.IDataConverter&lt;T&gt;">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IDataConverter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ZTP_projekt.Interface.IMealComposite">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IMealComposite.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ZTP_projekt.Interface.IObserver">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IObserver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ZTP_projekt.Interface.ISubject">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAIAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\ISubject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

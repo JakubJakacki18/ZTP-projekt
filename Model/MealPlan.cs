@@ -68,14 +68,7 @@ namespace ZTP_projekt.Model
 				observer.Update();
 			}
 		}
-		public void SaveToFile()
-		{
 
-		}
-		public void LoadFromFile()
-		{
-
-		}
 		public object Clone()
 		{
 			var clonedMealPlan = new MealPlan(startDate, endDate)
