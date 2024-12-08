@@ -19,6 +19,11 @@ namespace ZTP_projekt.Model
             Date = date;
             Meals = meals;
         }
+        public void AddMeal(Meal meal) 
+        {
+            //Meals.meal.CategoryMeal
+
+		}
 
         public void Display()
 		{
