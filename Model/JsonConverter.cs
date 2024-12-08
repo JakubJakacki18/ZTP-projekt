@@ -4,19 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ZTP_projekt.Interface;
 
 namespace ZTP_projekt.Model
 {
-	internal class MealPlanAdapter(MealPlan mealPlan)
+	internal class JsonConverter<T>
 	{
-		MealPlan _mealPlan = mealPlan;
-
-		void adapt_to_json()
+		public string Serialize(T obj)
 		{
-			string json = JsonSerializer.Serialize(_mealPlan, new JsonSerializerOptions { WriteIndented = true });
+			return JsonSerializer.Serialize(obj, new JsonSerializerOptions
+			{
+				WriteIndented = true
+			});
+		}
 
+		public T? Deserialize(string json)
+		{
+			return JsonSerializer.Deserialize<T>(json);
 		}
-		}
+	}
 }
 //def adapt_to_json(self):
 //        return json.dumps({

@@ -35,7 +35,6 @@ namespace ZTP_projekt.Model
 			catch (Exception ex)
 			{
 				Console.WriteLine($"Wystąpił błąd podczas odczytywania pliku: {ex.Message}");
-
 				return null;
 			}
 		}
