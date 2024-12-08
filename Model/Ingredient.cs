@@ -10,14 +10,14 @@ namespace ZTP_projekt.Model
 {
 	internal class Ingredient : IMealComposite
 	{
-		int id;
+		public int Id { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
         CategoryIngredientEnum categoryEnym;
 
         public Ingredient(int id, string name, int quantity)
         {
-            id = id;
+            Id = id;
             Name = name;
             Quantity = quantity;
         }

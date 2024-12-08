@@ -4,7 +4,7 @@ using ZTP_projekt.Interface;
 
 namespace ZTP_projekt.Model
 {
-    internal class MealPlan : IMealComposite, ISubject
+    internal class MealPlan : IMealComposite, ISubject, System.ICloneable
     {
         private static Dictionary<int, MealPlan> instances = new();
         private readonly List<IObserver> observers = new();
@@ -74,5 +74,14 @@ namespace ZTP_projekt.Model
 		{
 
 		}
-	}
+        public object Clone()
+        {
+            var clonedMealPlan = new MealPlan(startDate, endDate)
+            {
+                mealDays = new List<MealDay>(this.mealDays)
+            };
+
+            return clonedMealPlan;
+        }
+    }
 }

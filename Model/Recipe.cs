@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using ZTP_projekt.Interface;
 
+
 namespace ZTP_projekt.Model
 {
-    internal class Recipe : IMealComposite
+    internal class Recipe : IMealComposite, System.ICloneable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -18,7 +19,7 @@ namespace ZTP_projekt.Model
             Ingredients = new List<Ingredient>();
             Calories = calories;
         }
-
+       
         public void AddIngredient(Ingredient ingredient, int calories)
         {
             Ingredients.Add(ingredient);
@@ -34,6 +35,18 @@ namespace ZTP_projekt.Model
 		public void Display()
         {
             throw new NotImplementedException();
+        }
+        public object Clone()
+        {
+            Recipe clonedRecipe = (Recipe)this.MemberwiseClone();
+
+            clonedRecipe.Ingredients = new List<Ingredient>();
+            foreach (var ingredient in this.Ingredients)
+            {
+                clonedRecipe.Ingredients.Add(new Ingredient(ingredient.Id, ingredient.Name, ingredient.Quantity));
+            }
+
+            return clonedRecipe;
         }
     }
 }
