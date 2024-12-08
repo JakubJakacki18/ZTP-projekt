@@ -8,7 +8,7 @@ using ZTP_projekt.Interface;
 
 namespace ZTP_projekt.Model
 {
-	internal class JsonConverter<T>
+	internal class JsonConverter<T> : IDataConverter<T>
 	{
 		public string Serialize(T obj)
 		{
