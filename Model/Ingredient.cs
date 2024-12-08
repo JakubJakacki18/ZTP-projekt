@@ -11,10 +11,16 @@ namespace ZTP_projekt.Model
 	internal class Ingredient : IMealComposite
 	{
 		int id;
-		string name;
-		CategoryIngredientEnum categoryEnym;
-		int quantity;
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        CategoryIngredientEnum categoryEnym;
 
+        public Ingredient(int id, string name, int quantity)
+        {
+            id = id;
+            Name = name;
+            Quantity = quantity;
+        }
 		public void Display()
 		{
 			throw new NotImplementedException();
