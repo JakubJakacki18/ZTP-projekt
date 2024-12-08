@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ZTP_projekt.Interface
 {
-    internal interface ICloneable
-    {
-        object Clone();
-    }
+	interface ICloneable
+	{
+		object Clone();
+	}
 
 }

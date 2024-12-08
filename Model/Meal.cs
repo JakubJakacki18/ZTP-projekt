@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using ZTP_projekt.Data.Enum;
 using ZTP_projekt.Interface;
+using ICloneable = ZTP_projekt.Interface.ICloneable;
 
 namespace ZTP_projekt.Model
 {
-internal class Meal : IMealComposite
-    {
+internal class Meal : IMealComposite,  ICloneable
+	{
         public int Id { get; set; }             
         public string Name { get; set; }     
         public List<Recipe> Recipes { get; set; }  
@@ -28,6 +29,10 @@ internal class Meal : IMealComposite
             Recipes.Add(recipe);
         }
         public void Display()
+		{
+			throw new NotImplementedException();
+		}
+		public object Clone()
 		{
 			throw new NotImplementedException();
 		}

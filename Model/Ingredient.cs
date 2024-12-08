@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using ZTP_projekt.Data.Enum;
 using ZTP_projekt.Interface;
+using ICloneable = ZTP_projekt.Interface.ICloneable;
 
 namespace ZTP_projekt.Model
 {
-	internal class Ingredient : IMealComposite
+	internal class Ingredient : IMealComposite, ICloneable
 	{
 		public int Id { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
-        CategoryIngredientEnum categoryEnym { get; set; }
+        CategoryIngredientEnum categoryEnum { get; set; }
 
 		public Ingredient(int id, string name, int quantity)
         {
@@ -22,6 +23,10 @@ namespace ZTP_projekt.Model
             Quantity = quantity;
         }
 		public void Display()
+		{
+			throw new NotImplementedException();
+		}
+		public object Clone()
 		{
 			throw new NotImplementedException();
 		}

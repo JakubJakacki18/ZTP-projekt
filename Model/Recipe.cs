@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using ZTP_projekt.Interface;
+using ICloneable = ZTP_projekt.Interface.ICloneable;
 
 
 namespace ZTP_projekt.Model
 {
-    internal class Recipe : IMealComposite, System.ICloneable
+    internal class Recipe : IMealComposite, ICloneable
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZTP_projekt.Interface;
+using ICloneable = ZTP_projekt.Interface.ICloneable;
 
 namespace ZTP_projekt.Model
 {
-	internal class MealDay : IMealComposite
+	internal class MealDay : IMealComposite, ICloneable
 	{
         public int Id { get; private set; }
         public DateTime Date { get; private set; }
@@ -24,8 +25,11 @@ namespace ZTP_projekt.Model
             //Meals.meal.CategoryMeal
 
 		}
-
-        public void Display()
+        public object Clone()
+        {
+			throw new NotImplementedException();
+		}
+		public void Display()
 		{
 			throw new NotImplementedException();
 		}
