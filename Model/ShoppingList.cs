@@ -9,7 +9,13 @@ namespace ZTP_projekt.Model
 {
 	internal class ShoppingList
 	{
-		int id;
-		Dictionary<CategoryIngredientEnum,List<Ingredient>> ingredients;
-	}
+        public int Id { get; set; }
+        public Dictionary<CategoryIngredientEnum, List<Ingredient>> Ingredients { get; private set; }
+
+        public ShoppingList(int id)
+        {
+            Id = id;
+            Ingredients = new Dictionary<CategoryIngredientEnum, List<Ingredient>>();
+        }
+    }
 }
