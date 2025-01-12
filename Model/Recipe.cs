@@ -17,7 +17,7 @@ namespace ZTP_projekt.Model
         {
             Id = id;
             Name = name;
-            Ingredients = new List<Ingredient>();
+            Ingredients = ingredients ?? new List<Ingredient>();
             Calories = calories;
         }
        
