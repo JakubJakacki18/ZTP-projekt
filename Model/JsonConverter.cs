@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -8,27 +9,19 @@ using ZTP_projekt.Interface;
 
 namespace ZTP_projekt.Model
 {
-	internal class JsonConverter<T> : IDataConverter<T>
+	internal class JsonConverter : DataConverter
 	{
-		public string Serialize(T obj)
+		protected override string Serialize(List<MealPlan> mealPlans)
 		{
-			return JsonSerializer.Serialize(obj, new JsonSerializerOptions
+			return JsonSerializer.Serialize(mealPlans, new JsonSerializerOptions
 			{
 				WriteIndented = true
 			});
 		}
 
-		public T? Deserialize(string json)
+		protected override List<MealPlan> Deserialize(string content)
 		{
-			return JsonSerializer.Deserialize<T>(json);
+			return JsonSerializer.Deserialize<List<MealPlan>>(content) ?? [];
 		}
 	}
 }
-//def adapt_to_json(self):
-//        return json.dumps({
-//	"name": self.recipe.name,
-//            "description": self.recipe.description,
-//            "ingredients": self.recipe.ingredients,
-//            "category": self.recipe.category,
-//            "calories": self.recipe.calories,
-//        }, indent = 4)

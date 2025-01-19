@@ -8,10 +8,13 @@ namespace ZTP_projekt.Model
 {
 	internal class MealPlanHistory
 	{
-		private List<MealPlan> mealPlans = new List<MealPlan>();
+		private List<MealPlan> mealPlans = [];
 		private static readonly MealPlanHistory _instance = new();
 		public static MealPlanHistory Instance => _instance;
-
+		public List<MealPlan> GetAllMealPlans()
+		{
+			return mealPlans;
+		}
 		public void AddMealPlan(MealPlan mealPlan)
 		{
 			mealPlans.Add(mealPlan);
@@ -23,6 +26,10 @@ namespace ZTP_projekt.Model
 		public void ShowMealPlan(int numberOfMealPlan, int dayOfMealPlan)
 		{
 
+		}
+		public void OverrideMealPlanHistory(List<MealPlan> mealPlans) 
+		{
+			this.mealPlans = mealPlans;
 		}
 		public MealPlan? GetMealPlan(int numberOfMealPlan)
 		{
@@ -37,16 +44,5 @@ namespace ZTP_projekt.Model
 			
 			}
 		}
-		public void SaveToFile()
-		{
-			
-		}
-		public void LoadFromFile()
-		{
-
-		}
-
-
-
 	}
 }
