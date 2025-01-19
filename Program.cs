@@ -67,11 +67,11 @@ namespace ZTP_projekt
             shoppingListObserver.DisplayShoppingList();
 
 
-           // Console.WriteLine("\nSerializing Recipes to Json...");
-           // var jsonConverter = new JsonConverter();
-           // jsonConverter.Export("./plik.json");
-           // MealPlanHistory.Instance.ClearHistory();
-           // jsonConverter.Import("./plik.json");
+           Console.WriteLine("\nSerializing Recipes to Json...");
+           var jsonConverter = new JsonConverter();
+           jsonConverter.Export("./plik.json");
+           MealPlanHistory.Instance.ClearHistory();
+           jsonConverter.Import("./plik.json");
 
             Meal meal2 = new Meal(currentMealId++, "Sweet Treats", CategoryMealEnum.DESSERT);
             meal2.AddRecipe(recipes[1]);
