@@ -46,4 +46,3 @@ namespace ZTP_projekt.Model
 		}
 	}
 }
-=

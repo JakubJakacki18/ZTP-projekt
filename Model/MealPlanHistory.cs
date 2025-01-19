@@ -44,5 +44,10 @@ namespace ZTP_projekt.Model
 			
 			}
 		}
+
+		internal void ClearHistory()
+		{
+			mealPlans.Clear();
+		}
 	}
 }
