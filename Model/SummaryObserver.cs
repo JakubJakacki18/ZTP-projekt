@@ -23,10 +23,27 @@ namespace ZTP_projekt.Model
         private void CalculateTotalCalories()
         {
             _calculate.Calculate(_mealPlan);
-		}
+        }
         public void ChangeCalculateStrategy(ICalculate calculate)
-		{
-			_calculate = calculate;
-		}
-	}
+        {
+            _calculate = calculate;
+        }
+        public void DisplayTotalCalories()
+        {
+            int totalCalories = 0;
+
+            foreach (var mealDay in _mealPlan.MealDays)
+            {
+                foreach (var meal in mealDay.Meals)
+                {
+                    foreach (var recipe in meal.Recipes)
+                    {
+                        totalCalories += recipe.Calories;  // Sumowanie kalorii z każdego przepisu
+                    }
+                }
+            }
+
+            Console.WriteLine($"Total Calories for the Meal Plan: {totalCalories} kcal");
+        }
+    }
 }

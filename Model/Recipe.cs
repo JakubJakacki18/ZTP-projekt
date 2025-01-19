@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ZTP_projekt.Interface;
 using ICloneable = ZTP_projekt.Interface.ICloneable;
 
@@ -20,21 +21,25 @@ namespace ZTP_projekt.Model
             Calories = calories;
         }
 
-        public void AddIngredient(Ingredient ingredient, int calories)
+        // Dodanie składnika
+        public void AddIngredient(Ingredient ingredient)
         {
             Ingredients.Add(ingredient);
         }
 
-        public void ChangeIngredient(int numberOfIngredient, Ingredient ingredient, int calories)
+        // Zmiana składnika (niezaimplementowana w tym momencie)
+        public void ChangeIngredient(int numberOfIngredient, Ingredient ingredient)
         {
             throw new NotImplementedException();
         }
 
+        // Usunięcie składnika (niezaimplementowana w tym momencie)
         public void RemoveIngredient(int numberOfIngredient)
         {
             throw new NotImplementedException();
         }
 
+        // Metoda wyświetlająca szczegóły przepisu
         public void Display()
         {
             Console.WriteLine($"\nRecipe ID: {Id}");
@@ -47,6 +52,7 @@ namespace ZTP_projekt.Model
             Console.WriteLine($"Calories: {Calories}");
         }
 
+        // Statyczna metoda wyświetlająca listę przepisów
         public static void DisplayRecipes(List<Recipe> recipes)
         {
             if (!recipes.Any())
@@ -61,19 +67,33 @@ namespace ZTP_projekt.Model
             }
         }
 
+        // Ustawienie kalorii przepisu
         public void SetCalories(int calories)
         {
             Calories = calories;
         }
 
+        // Statyczna metoda dodająca przepis
+        public static void AddRecipe(List<Recipe> recipes, string name, List<Ingredient> ingredients, int calories)
+        {
+            // Generowanie ID dla nowego przepisu
+            int recipeId = recipes.Count > 0 ? recipes.Max(r => r.Id) + 1 : 1;
+
+            var recipe = new Recipe(recipeId, name, ingredients, calories);
+            recipes.Add(recipe);
+            Console.WriteLine($"Added recipe: {recipe.Name} (ID: {recipe.Id})");
+        }
+
+        // Klonowanie przepisu
         public object Clone()
         {
             Recipe clonedRecipe = (Recipe)this.MemberwiseClone();
 
+            // Klonowanie składników przepisu
             clonedRecipe.Ingredients = new List<Ingredient>();
             foreach (var ingredient in this.Ingredients)
             {
-                clonedRecipe.Ingredients.Add(new Ingredient(ingredient.Id, ingredient.Name, ingredient.Quantity,ingredient.CategoryEnum));
+                clonedRecipe.Ingredients.Add(new Ingredient(ingredient.Id, ingredient.Name, ingredient.Quantity, ingredient.CategoryEnum));
             }
             clonedRecipe.Calories = this.Calories;
 

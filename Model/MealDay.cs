@@ -37,9 +37,30 @@ namespace ZTP_projekt.Model
 
                 return clonedMealDay;
         }
-		public void Display()
-		{
-			throw new NotImplementedException();
-		}
-	}
+        public void Display()
+        {
+            Console.WriteLine($"\n--- Meal Day Details ---");
+            Console.WriteLine($"Meal Day ID: {Id}");
+            Console.WriteLine($"Date: {Date.ToShortDateString()}");
+            Console.WriteLine("Meals:");
+
+            if (Meals == null || Meals.Count == 0)
+            {
+                Console.WriteLine("No meals available for this day.");
+                return;
+            }
+
+            foreach (var meal in Meals)
+            {
+                Console.WriteLine($"- {meal.Name} (Category: {meal.CategoryMeal})");
+                Console.WriteLine("  Recipes:");
+
+                foreach (var recipe in meal.Recipes)
+                {
+                    Console.WriteLine($"    - {recipe.Name}");
+                }
+            }
+        }
+
+    }
 }
