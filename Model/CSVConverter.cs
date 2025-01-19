@@ -9,18 +9,18 @@ using ZTP_projekt.Interface;
 
 namespace ZTP_projekt.Model
 {
-	internal class CSVConverter<T> : IDataConverter<T> where T : new()
+	internal class CSVConverter : DataConverter
 	{
-		public string Serialize(T obj)
+		protected override string Serialize(List<MealPlan> mealPlans)
 		{
-			var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+			var properties = typeof(List<MealPlan>).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 			var header = string.Join(",", properties.Select(p => p.Name));
-			var values = string.Join(",", properties.Select(p => p.GetValue(obj)?.ToString() ?? string.Empty));
+			var values = string.Join(",", properties.Select(p => p.GetValue(mealPlans)?.ToString() ?? string.Empty));
 
 			return $"{header}\n{values}";
 		}
 
-		public T? Deserialize(string data)
+		protected override List<MealPlan> Deserialize(string data)
 		{
 			var lines = data.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
 			if (lines.Length < 2)
@@ -29,8 +29,8 @@ namespace ZTP_projekt.Model
 			var header = lines[0].Split(',');
 			var values = lines[1].Split(',');
 
-			var obj = new T();
-			var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+			var obj = new List<MealPlan>();
+			var properties = typeof(List<MealPlan>).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
 			for (int i = 0; i < header.Length; i++)
 			{
@@ -46,11 +46,4 @@ namespace ZTP_projekt.Model
 		}
 	}
 }
-//def adapt_to_json(self):
-//        return json.dumps({
-//	"name": self.recipe.name,
-//            "description": self.recipe.description,
-//            "ingredients": self.recipe.ingredients,
-//            "category": self.recipe.category,
-//            "calories": self.recipe.calories,
-//        }, indent = 4)
+=
