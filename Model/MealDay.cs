@@ -11,8 +11,8 @@ namespace ZTP_projekt.Model
 	internal class MealDay : IMealComposite, ICloneable
 	{
         public int Id { get; private set; }
-        public DateTime Date { get; private set; }
-        public List<Meal> Meals { get; private set; }
+        public DateTime Date { get; private set; } = DateTime.Now;
+		public List<Meal> Meals { get; private set; } = [];
 
         public MealDay(int id, DateTime date, List<Meal> meals)
         {
@@ -20,7 +20,9 @@ namespace ZTP_projekt.Model
             Date = date;
             Meals = meals;
         }
-        public void AddMeal(Meal meal) 
+		[Obsolete("Do not use the parameterless constructor. MealDay(int id, DateTime date, List<Meal> meals)", true)]
+		public MealDay() { }
+		public void AddMeal(Meal meal) 
         {
             //Meals.meal.CategoryMeal
 

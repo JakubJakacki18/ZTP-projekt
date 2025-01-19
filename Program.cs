@@ -43,16 +43,16 @@ namespace ZTP_projekt
             Meal meal = new Meal(1, "meal jakiś", CategoryMealEnum.LUNCH);
             meal.AddRecipe(recipes[0]);
             MealDay mealDay=new MealDay(1, DateTime.Now, [meal]);
-            DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
+            DateTime startDate = DateTime.Now;
 
 			MealPlan mealPlan = new MealPlan(startDate, startDate.AddDays(6));
             mealPlan.AddMealDay(mealDay);
             MealPlanHistory.Instance.AddMealPlan(mealPlan);
-			Console.WriteLine("\nSerializing Recipes to Json...");
-			var jsonConverter = new JsonConverter();
-			jsonConverter.Export("./plik.json");
+			Console.WriteLine("\nSerializing Recipes to Yaml...");
+			var csvConverter = new YAMLConverter();
+			csvConverter.Export("./plik.yaml");
             MealPlanHistory.Instance.ClearHistory();
-            jsonConverter.Import("./plik.json");
+            csvConverter.Import("./plik.yaml");
 			Console.WriteLine("\nEditing Recipe: Pasta Carbonara using Clone");
             EditRecipeUsingClone(1, "Pasta Carbonara (Updated)", new List<Ingredient>
             {

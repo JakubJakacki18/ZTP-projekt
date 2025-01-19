@@ -12,9 +12,9 @@ namespace ZTP_projekt.Model
 	internal class Ingredient : IMealComposite, ICloneable
 	{
 		public int Id { get; set; }
-        public string Name { get; set; }
-        public int Quantity { get; set; }
-        CategoryIngredientEnum categoryEnum { get; set; }
+        public string Name { get; set; } = "";
+		public int Quantity { get; set; }
+        public CategoryIngredientEnum CategoryEnum { get; set; }
 
 		public Ingredient(int id, string name, int quantity)
         {
@@ -22,6 +22,8 @@ namespace ZTP_projekt.Model
             Name = name;
             Quantity = quantity;
         }
+		[Obsolete("Do not use the parameterless constructor. Ingredient(int id, string name, int quantity)",true)]
+		public Ingredient() { }
 		public void Display()
 		{
 			throw new NotImplementedException();

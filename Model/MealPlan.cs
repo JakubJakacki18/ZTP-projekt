@@ -1,6 +1,7 @@
 ﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Xml.Serialization;
 using ZTP_projekt.Interface;
 using ICloneable = ZTP_projekt.Interface.ICloneable;
 
@@ -9,17 +10,16 @@ namespace ZTP_projekt.Model
 {
 	internal class MealPlan : IMealComposite, ISubject, ICloneable
 	{
-		private static Dictionary<int, MealPlan> instances = [];
+		[XmlIgnore]
 		private readonly List<IObserver> observers = [];
 		public List<MealDay> MealDays { get; private set;} = []; 
-		public int id { get; private set; }
-		public DateOnly StartDate { get; private set; }
-		public DateOnly EndDate { get; private set; }
+		public int Id { get; private set; }
+		public DateTime StartDate { get; private set; } = DateTime.Now;
+		public DateTime EndDate { get; private set; } = DateTime.Now.AddDays(1);
 
-		public MealPlan(DateOnly startDate, DateOnly endDate)
+		public MealPlan(DateTime startDate, DateTime endDate)
 		{
-			int id = instances.Count > 0 ? instances.Keys.Max() + 1 : 0;
-			int daysDifference = (endDate.ToDateTime(TimeOnly.MinValue) - startDate.ToDateTime(TimeOnly.MinValue)).Days;
+			int daysDifference = (EndDate - StartDate).Days;
 			if (daysDifference < 0)
 			{
 				throw new ArgumentException("End date must be greater than start date");
@@ -27,7 +27,8 @@ namespace ZTP_projekt.Model
 			this.StartDate = startDate;
 			this.EndDate = endDate;
 		}
-
+		[Obsolete("Do not use the parameterless constructor. MealPlan(DateTime startDate, DateTime endDate)", true)]
+		public MealPlan() { }
 
 
 		public void Display()
@@ -37,7 +38,7 @@ namespace ZTP_projekt.Model
 
 		public void AddMealDay(MealDay mealDay)
 		{
-			int daysDifference = (EndDate.ToDateTime(TimeOnly.MinValue) - StartDate.ToDateTime(TimeOnly.MinValue)).Days;
+			int daysDifference = (EndDate - StartDate).Days;
 			if (MealDays.Count() > daysDifference)
 			{
 				throw new ArgumentException("MealPlan is full");
