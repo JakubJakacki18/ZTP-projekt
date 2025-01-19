@@ -35,7 +35,7 @@ namespace ZTP_projekt.Model
             Console.WriteLine($"Meal Plan ID: {Id}");
             Console.WriteLine($"Start Date: {StartDate}");
             Console.WriteLine($"End Date: {EndDate}");
-            Console.WriteLine($"Total Days: {(EndDate.ToDateTime(TimeOnly.MinValue) - StartDate.ToDateTime(TimeOnly.MinValue)).Days + 1}");
+            Console.WriteLine($"Total Days: {(EndDate - StartDate).Days + 1}");
             Console.WriteLine("Meal Days:");
 
             if (!MealDays.Any())

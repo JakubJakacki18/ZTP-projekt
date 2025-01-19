@@ -50,7 +50,8 @@ namespace ZTP_projekt
                 Recipe.DisplayRecipes(recipes);
 
                 // Test 2: Adding Meal Plan
-                MealPlan mealPlan = new MealPlan(startDate, startDate.AddDays(6));
+                var startDate = DateTime.Now;
+				MealPlan mealPlan = new MealPlan(startDate, startDate.AddDays(6));
                 var shoppingListObserver = new ShoppingListObserver(mealPlan);
 
                 Meal meal1 = new Meal(currentMealId++, "Italian Dinner", CategoryMealEnum.DINNER);
