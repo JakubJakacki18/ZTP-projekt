@@ -12,7 +12,7 @@ namespace ZTP_projekt.Model
 		private static Dictionary<int, MealPlan> instances = [];
 		private readonly List<IObserver> observers = [];
 		public List<MealDay> MealDays { get; private set;} = []; 
-		public int id { get; private set; }
+		public int Id { get; private set; }
 		public DateOnly StartDate { get; private set; }
 		public DateOnly EndDate { get; private set; }
 
@@ -28,12 +28,34 @@ namespace ZTP_projekt.Model
 			this.EndDate = endDate;
 		}
 
-		public void Display()
-		{
-			throw new NotImplementedException();
-		}
+        public void Display()
+        {
+            Console.WriteLine("\n--- Meal Plan Details ---");
+            Console.WriteLine($"Meal Plan ID: {Id}");
+            Console.WriteLine($"Start Date: {StartDate}");
+            Console.WriteLine($"End Date: {EndDate}");
+            Console.WriteLine($"Total Days: {(EndDate.ToDateTime(TimeOnly.MinValue) - StartDate.ToDateTime(TimeOnly.MinValue)).Days + 1}");
+            Console.WriteLine("Meal Days:");
 
-		public void AddMealDay(MealDay mealDay)
+            if (!MealDays.Any())
+            {
+                Console.WriteLine("No Meal Days available.");
+                return;
+            }
+
+            foreach (var mealDay in MealDays)
+            {
+                Console.WriteLine($"\nMeal Day ID: {mealDay.Id}");
+                Console.WriteLine($"Date: {mealDay.Date}");
+                Console.WriteLine("Meals:");
+                foreach (var meal in mealDay.Meals)
+                {
+                    Console.WriteLine($"- {meal.Name} (Category: {meal.CategoryMeal})");
+                }
+            }
+        }
+
+        public void AddMealDay(MealDay mealDay)
 		{
 			int daysDifference = (EndDate.ToDateTime(TimeOnly.MinValue) - StartDate.ToDateTime(TimeOnly.MinValue)).Days;
 			if (MealDays.Count() > daysDifference)
@@ -42,8 +64,9 @@ namespace ZTP_projekt.Model
 			}
 			MealDays.Add(mealDay);
 
-		}
-		public void Attach(IObserver observer)
+
+        }
+        public void Attach(IObserver observer)
 		{
 			if (!observers.Contains(observer))
 			{

@@ -53,16 +53,26 @@ namespace ZTP_projekt.Model
 
         public static void DisplayMeals(List<Meal> meals)
         {
-            if (!meals.Any())
+            if (meals == null || meals.Count == 0)
             {
                 Console.WriteLine("No meals available.");
                 return;
             }
 
+            Console.WriteLine("Meals:");
             foreach (var meal in meals)
             {
-                meal.Display();
+                Console.WriteLine($"Meal ID: {meal.Id}");
+                Console.WriteLine($"Name: {meal.Name}");
+                Console.WriteLine($"Category: {meal.CategoryMeal}");
+                Console.WriteLine("Recipes:");
+                foreach (var recipe in meal.Recipes)
+                {
+                    Console.WriteLine($"- {recipe.Name}");
+                }
+                Console.WriteLine();
             }
         }
+
     }
 }

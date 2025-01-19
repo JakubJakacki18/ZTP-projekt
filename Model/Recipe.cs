@@ -35,7 +35,6 @@ namespace ZTP_projekt.Model
             throw new NotImplementedException();
         }
 
-        // Dodanie metody Display, która będzie wypisywać szczegóły przepisu
         public void Display()
         {
             Console.WriteLine($"\nRecipe ID: {Id}");
@@ -48,7 +47,6 @@ namespace ZTP_projekt.Model
             Console.WriteLine($"Calories: {Calories}");
         }
 
-        // Statyczna metoda DisplayRecipes, która wypisuje listę przepisów
         public static void DisplayRecipes(List<Recipe> recipes)
         {
             if (!recipes.Any())
@@ -75,7 +73,7 @@ namespace ZTP_projekt.Model
             clonedRecipe.Ingredients = new List<Ingredient>();
             foreach (var ingredient in this.Ingredients)
             {
-                clonedRecipe.Ingredients.Add(new Ingredient(ingredient.Id, ingredient.Name, ingredient.Quantity));
+                clonedRecipe.Ingredients.Add(new Ingredient(ingredient.Id, ingredient.Name, ingredient.Quantity,ingredient.CategoryEnum));
             }
             clonedRecipe.Calories = this.Calories;
 
