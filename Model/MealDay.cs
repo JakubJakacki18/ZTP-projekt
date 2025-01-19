@@ -22,13 +22,21 @@ namespace ZTP_projekt.Model
         }
         public void AddMeal(Meal meal) 
         {
-            //Meals.meal.CategoryMeal
+            Meals.Add(meal);
 
-		}
+        }
         public object Clone()
         {
-			throw new NotImplementedException();
-		}
+                var clonedMealDay = (MealDay)this.MemberwiseClone();
+
+                clonedMealDay.Meals = new List<Meal>();
+                foreach (var meal in this.Meals)
+                {
+                    clonedMealDay.Meals.Add((Meal)meal.Clone());
+                }
+
+                return clonedMealDay;
+        }
 		public void Display()
 		{
 			throw new NotImplementedException();

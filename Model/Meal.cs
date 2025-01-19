@@ -34,7 +34,15 @@ internal class Meal : IMealComposite,  ICloneable
 		}
 		public object Clone()
 		{
-			throw new NotImplementedException();
-		}
+            Meal clonedMeal = (Meal)this.MemberwiseClone();
+            clonedMeal.Recipes = new List<Recipe>();
+
+            foreach (var recipe in this.Recipes)
+            {
+                clonedMeal.Recipes.Add((Recipe)recipe.Clone());
+            }
+
+            return clonedMeal;
+        }
 	}
 }
