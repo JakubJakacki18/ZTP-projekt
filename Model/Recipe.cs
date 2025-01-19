@@ -80,10 +80,18 @@ namespace ZTP_projekt.Model
             // Generowanie ID dla nowego przepisu
             int recipeId = recipes.Count > 0 ? recipes.Max(r => r.Id) + 1 : 1;
 
-            var recipe = new Recipe(recipeId, name, ingredients, calories);
+            // Tworzenie przepisu za pomocą RecipeBuilder
+            var recipe = new RecipeBuilder()
+                .SetId(recipeId)
+                .SetName(name)
+                .AddIngredients(ingredients)
+                .SetCalories(calories)
+                .Build();
+
             recipes.Add(recipe);
             Console.WriteLine($"Added recipe: {recipe.Name} (ID: {recipe.Id})");
         }
+
 
         // Klonowanie przepisu
         public object Clone()
