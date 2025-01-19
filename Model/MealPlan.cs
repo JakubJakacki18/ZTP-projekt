@@ -28,8 +28,6 @@ namespace ZTP_projekt.Model
 			this.EndDate = endDate;
 		}
 
-
-
 		public void Display()
 		{
 			throw new NotImplementedException();

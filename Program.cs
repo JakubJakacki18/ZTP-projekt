@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ZTP_projekt.Data.Enum;
 using ZTP_projekt.Model;
-using ZTP_projekt.Data.Enum;
 
 namespace ZTP_projekt
 {
@@ -18,6 +17,7 @@ namespace ZTP_projekt
         {
             Console.WriteLine("Recipe and Meal Builder Program\n");
 
+            // Dodawanie przepisów
             AddRecipe("Pasta Carbonara", new List<Ingredient>
             {
                 new Ingredient(1, "Pasta", 200),
@@ -43,42 +43,46 @@ namespace ZTP_projekt
                 new Ingredient(4, "Butter", 100),
                 new Ingredient(5, "Eggs", 3)
             }, 1200);
-            Meal meal = new Meal(1, "meal jakiś", CategoryMealEnum.LUNCH);
-            meal.AddRecipe(recipes[0]);
-            MealDay mealDay=new MealDay(1, DateTime.Now, [meal]);
-            DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
+            Recipe.DisplayRecipes(recipes);
+            // Tworzenie posiłków
+            Meal meal1 = new Meal(currentMealId++, "Italian Dinner", CategoryMealEnum.DINNER);
+            meal1.AddRecipe(recipes[0]);
+            meal1.AddRecipe(recipes[1]);
+            meals.Add(meal1);
 
-			MealPlan mealPlan = new MealPlan(startDate, startDate.AddDays(6));
+            MealDay mealDay = new MealDay(1, DateTime.Now, new List<Meal> { meal1 });
+            DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
+            MealPlan mealPlan = new MealPlan(startDate, startDate.AddDays(6));
+
             mealPlan.AddMealDay(mealDay);
             MealPlanHistory.Instance.AddMealPlan(mealPlan);
-			Console.WriteLine("\nSerializing Recipes to Json...");
-			var jsonConverter = new JsonConverter();
-			jsonConverter.Export("./plik.json");
+
+            Console.WriteLine("\nSerializing Recipes to Json...");
+            var jsonConverter = new JsonConverter();
+            jsonConverter.Export("./plik.json");
             MealPlanHistory.Instance.ClearHistory();
             jsonConverter.Import("./plik.json");
-			Console.WriteLine("\nEditing Recipe: Pasta Carbonara using Clone");
-            EditRecipeUsingClone(1, "Pasta Carbonara (Updated)", new List<Ingredient>
+
+            Meal meal2 = new Meal(currentMealId++, "Sweet Treats", CategoryMealEnum.DESSERT);
+            meal2.AddRecipe(recipes[2]);
+            meals.Add(meal2);
+
+            // Wypisywanie posiłków przy użyciu Meal.DisplayMeals()
+            Console.WriteLine("\nMeals After Adding Recipes:");
+            Meal.DisplayMeals(meals);
+
+            // Edycja przepisu (zmiana składu Pasta Carbonara)
+            Console.WriteLine("\nEditing Recipe: Pasta Carbonara using Clone");
+            EditRecipeUsingClone(1, "Whole Grain Pasta Carbonara", new List<Ingredient>
             {
                 new Ingredient(1, "Whole Grain Pasta", 200),
                 new Ingredient(2, "Eggs", 2),
                 new Ingredient(3, "Parmesan Cheese", 50),
                 new Ingredient(4, "Bacon", 120)
             }, 850);
-
-            Console.WriteLine("\nRecipes After Editing:");
-            ListRecipes();
-
-            Console.WriteLine("\nCreating Meals and Adding Recipes:");
-
-            CreateMeal("Italian Dinner", CategoryMealEnum.DINNER);
-            AddRecipeToMeal(1, "Pasta Carbonara");
-            AddRecipeToMeal(1, "Salad Nicoise");
-
-            CreateMeal("Sweet Treats", CategoryMealEnum.DESSERT);
-            AddRecipeToMeal(2, "Chocolate Cake");
-
-            Console.WriteLine("\nMeals After Adding Recipes:");
-            ListMeals();
+            Recipe.DisplayRecipes(recipes);
+            Console.WriteLine("\nMeals After Editing Recipe:");
+            Meal.DisplayMeals(meals); // Wypisanie posiłków po edycji przepisu
         }
 
         static void AddRecipe(string name, List<Ingredient> ingredients, int calories)
@@ -113,75 +117,13 @@ namespace ZTP_projekt
             recipes[index] = clonedRecipe;
 
             Console.WriteLine($"Recipe '{recipeToEdit.Name}' updated successfully to '{clonedRecipe.Name}' using clone.");
-        }
-
-        static void ListRecipes()
-        {
-            if (!recipes.Any())
-            {
-                Console.WriteLine("No recipes available.");
-                return;
-            }
-
-            foreach (var recipe in recipes)
-            {
-                Console.WriteLine($"\nRecipe ID: {recipe.Id}");
-                Console.WriteLine($"Recipe Name: {recipe.Name}");
-                Console.WriteLine("Ingredients:");
-                foreach (var ingredient in recipe.Ingredients)
-                {
-                    Console.WriteLine($"- {ingredient.Name} ({ingredient.Quantity}g)");
-                }
-                Console.WriteLine($"Calories: {recipe.Calories}");
-            }
-        }
-
-        static void CreateMeal(string name, CategoryMealEnum categoryMeal)
-        {
-            var meal = new Meal(currentMealId++, name, categoryMeal);
-            meals.Add(meal);
-            Console.WriteLine($"Created meal: {meal.Name} (ID: {meal.Id})");
-        }
-
-        static void AddRecipeToMeal(int mealId, string recipeName)
-        {
-            var meal = meals.FirstOrDefault(m => m.Id == mealId);
-            var recipe = recipes.FirstOrDefault(r => r.Name == recipeName);
-
-            if (meal != null && recipe != null)
-            {
-                var clonedRecipe = (Recipe)recipe.Clone();
-                foreach (var ingredient in clonedRecipe.Ingredients)
-                {
-                    var clonedIngredient = (Ingredient)ingredient.Clone();
-                }
-                    meal.AddRecipe(clonedRecipe);
-                Console.WriteLine($"Added '{clonedRecipe.Name}' to meal '{meal.Name}'.");
-            }
-            else
-            {
-                Console.WriteLine($"Error: Meal or Recipe not found. (Meal ID: {mealId}, Recipe: {recipeName})");
-            }
-        }
-
-
-        static void ListMeals()
-        {
-            if (!meals.Any())
-            {
-                Console.WriteLine("No meals available.");
-                return;
-            }
-
             foreach (var meal in meals)
             {
-                Console.WriteLine($"\nMeal ID: {meal.Id}");
-                Console.WriteLine($"Meal Name: {meal.Name}");
-                Console.WriteLine($"Category: {meal.CategoryMeal}");
-                Console.WriteLine("Recipes:");
-                foreach (var recipe in meal.Recipes)
+                var recipeInMeal = meal.Recipes.FirstOrDefault(r => r.Id == id);
+                if (recipeInMeal != null)
                 {
-                    Console.WriteLine($"- {recipe.Name}");
+                    var recipeIndex = meal.Recipes.IndexOf(recipeInMeal);
+                    meal.Recipes[recipeIndex] = clonedRecipe;
                 }
             }
         }
