@@ -18,7 +18,7 @@ namespace ZTP_projekt.Model
 		}
 		public void ExecuteCalculate()
 		{
-			_calculate.calculate(_mealPlan);
+			_calculate.Calculate(_mealPlan);
 		}
 	}
 }
