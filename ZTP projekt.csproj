@@ -13,4 +13,7 @@
     <Folder Include="Controller\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SharpYaml" Version="2.1.1" />
+  </ItemGroup>
 </Project>

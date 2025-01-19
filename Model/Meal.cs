@@ -6,11 +6,11 @@ using ICloneable = ZTP_projekt.Interface.ICloneable;
 
 namespace ZTP_projekt.Model
 {
-    internal class Meal : IMealComposite, ICloneable
-    {
+internal class Meal : IMealComposite,  ICloneable
+	{
         public int Id { get; set; }
-        public string Name { get; set; }
-        public List<Recipe> Recipes { get; set; }
+        public string Name { get; set; } = "";
+        public List<Recipe> Recipes { get; set; } = [];  
         public CategoryMealEnum CategoryMeal { get; set; }
 
         public Meal(int id, string name, CategoryMealEnum categoryMeal)
@@ -20,8 +20,10 @@ namespace ZTP_projekt.Model
             CategoryMeal = categoryMeal;
             Recipes = new List<Recipe>();
         }
+		[Obsolete("Do not use the parameterless constructor. Meal(int id, string name, CategoryMealEnum categoryMeal)", true)]
+		public Meal() { }
 
-        public void AddRecipe(Recipe recipe)
+		public void AddRecipe(Recipe recipe)
         {
             Recipes.Add(recipe);
         }

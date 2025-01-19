@@ -9,17 +9,18 @@ namespace ZTP_projekt.Model
     internal class Recipe : IMealComposite, ICloneable
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
+        public string Name { get; set; } = "";
+        public List<Ingredient> Ingredients { get; set; } = [];
         public int Calories { get; private set; }
-
-        public Recipe(int id, string name, List<Ingredient> ingredients, int calories)
+		public Recipe(int id, string name, List<Ingredient> ingredients, int calories)
         {
             Id = id;
             Name = name;
-            Ingredients = ingredients ?? new List<Ingredient>();
+            Ingredients = ingredients ?? []; 
             Calories = calories;
         }
+        [Obsolete("Do not use the parameterless constructor. Recipe(int id, string name, List<Ingredient> ingredients, int calories)", true)]
+        public Recipe() { }
 
         // Dodanie składnika
         public void AddIngredient(Ingredient ingredient)
