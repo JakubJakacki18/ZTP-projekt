@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ZTP_projekt.Model;
@@ -14,7 +14,6 @@ namespace ZTP_projekt
         {
             Console.WriteLine("Recipe Builder Program\n");
 
-            // Create initial recipes
             AddRecipe("Pasta Carbonara", new List<Ingredient>
             {
                 new Ingredient(1, "Pasta", 200),

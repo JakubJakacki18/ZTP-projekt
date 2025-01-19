@@ -8,10 +8,13 @@ namespace ZTP_projekt.Model
 {
 	internal class MealPlanHistory
 	{
-		private List<MealPlan> mealPlans = new List<MealPlan>();
+		private List<MealPlan> mealPlans = [];
 		private static readonly MealPlanHistory _instance = new();
 		public static MealPlanHistory Instance => _instance;
-
+		public List<MealPlan> GetAllMealPlans()
+		{
+			return mealPlans;
+		}
 		public void AddMealPlan(MealPlan mealPlan)
 		{
 			mealPlans.Add(mealPlan);
@@ -24,20 +27,22 @@ namespace ZTP_projekt.Model
 		{
 
 		}
-		public MealPlan GetMealPlan(int numberOfMealPlan)
+		public void OverrideMealPlanHistory(List<MealPlan> mealPlans) 
 		{
-			return mealPlans[numberOfMealPlan];
+			this.mealPlans = mealPlans;
 		}
-		public void SaveToFile()
+		public MealPlan? GetMealPlan(int numberOfMealPlan)
 		{
-
+			try
+			{
+				return mealPlans[numberOfMealPlan];
+			}
+			catch (ArgumentOutOfRangeException)
+			{
+				Console.WriteLine("Meal plan with this number does not exist");
+				return null;
+			
+			}
 		}
-		public void LoadFromFile()
-		{
-
-		}
-
-
-
 	}
 }

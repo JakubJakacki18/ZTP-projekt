@@ -9,6 +9,6 @@ namespace ZTP_projekt.Interface
 {
 	internal interface ICalculate
 	{
-		decimal calculate(MealPlan mealPlan);
+		decimal Calculate(MealPlan mealPlan);
 	}
 }
