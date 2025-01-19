@@ -45,15 +45,10 @@ namespace ZTP_projekt.Model
 
             foreach (var mealDay in MealDays)
             {
-                Console.WriteLine($"\nMeal Day ID: {mealDay.Id}");
-                Console.WriteLine($"Date: {mealDay.Date}");
-                Console.WriteLine("Meals:");
-                foreach (var meal in mealDay.Meals)
-                {
-                    Console.WriteLine($"- {meal.Name} (Category: {meal.CategoryMeal})");
-                }
+                mealDay.Display();
             }
         }
+
 
         public void AddMealDay(MealDay mealDay)
 		{
