@@ -16,9 +16,8 @@ namespace ZTP_projekt.Model
         {
             Id = id;
             Name = name;
-            Ingredients = ingredients ?? new List<Ingredient>(); 
+            Ingredients = ingredients ?? new List<Ingredient>();
             Calories = calories;
-
         }
 
         public void AddIngredient(Ingredient ingredient, int calories)
@@ -36,9 +35,32 @@ namespace ZTP_projekt.Model
             throw new NotImplementedException();
         }
 
+        // Dodanie metody Display, która będzie wypisywać szczegóły przepisu
         public void Display()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"\nRecipe ID: {Id}");
+            Console.WriteLine($"Recipe Name: {Name}");
+            Console.WriteLine("Ingredients:");
+            foreach (var ingredient in Ingredients)
+            {
+                Console.WriteLine($"- {ingredient.Name} ({ingredient.Quantity}g)");
+            }
+            Console.WriteLine($"Calories: {Calories}");
+        }
+
+        // Statyczna metoda DisplayRecipes, która wypisuje listę przepisów
+        public static void DisplayRecipes(List<Recipe> recipes)
+        {
+            if (!recipes.Any())
+            {
+                Console.WriteLine("No recipes available.");
+                return;
+            }
+
+            foreach (var recipe in recipes)
+            {
+                recipe.Display();
+            }
         }
 
         public void SetCalories(int calories)
