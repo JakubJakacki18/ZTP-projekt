@@ -9,12 +9,12 @@ namespace ZTP_projekt.Model
 {
 	internal class MealPlan : IMealComposite, ISubject, ICloneable
 	{
-		private static Dictionary<int, MealPlan> instances = new();
-		private readonly List<IObserver> observers = new();
-		public List<MealDay> MealDays { get; private set;} = new (); 
+		private static Dictionary<int, MealPlan> instances = [];
+		private readonly List<IObserver> observers = [];
+		public List<MealDay> MealDays { get; private set;} = []; 
 		public int id { get; private set; }
-		public readonly DateOnly startDate;
-		public readonly DateOnly endDate;
+		public DateOnly StartDate { get; private set; }
+		public DateOnly EndDate { get; private set; }
 
 		public MealPlan(DateOnly startDate, DateOnly endDate)
 		{
@@ -24,8 +24,8 @@ namespace ZTP_projekt.Model
 			{
 				throw new ArgumentException("End date must be greater than start date");
 			}
-			this.startDate = startDate;
-			this.endDate = endDate;
+			this.StartDate = startDate;
+			this.EndDate = endDate;
 		}
 
 
@@ -37,7 +37,7 @@ namespace ZTP_projekt.Model
 
 		public void AddMealDay(MealDay mealDay)
 		{
-			int daysDifference = (endDate.ToDateTime(TimeOnly.MinValue) - startDate.ToDateTime(TimeOnly.MinValue)).Days;
+			int daysDifference = (EndDate.ToDateTime(TimeOnly.MinValue) - StartDate.ToDateTime(TimeOnly.MinValue)).Days;
 			if (MealDays.Count() > daysDifference)
 			{
 				throw new ArgumentException("MealPlan is full");
@@ -71,9 +71,9 @@ namespace ZTP_projekt.Model
 
 		public object Clone()
 		{
-			var clonedMealPlan = new MealPlan(startDate, endDate)
+			var clonedMealPlan = new MealPlan(StartDate, EndDate)
 			{
-				MealDays = new List<MealDay>(this.MealDays)
+				MealDays = new List<MealDay>(MealDays)
 			};
 
 			return clonedMealPlan;
