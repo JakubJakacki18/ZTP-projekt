@@ -10,24 +10,43 @@ namespace ZTP_projekt.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
-        CategoryIngredientEnum categoryEnum { get; set; }
+        public CategoryIngredientEnum CategoryEnum { get; set; }
 
-        public Ingredient(int id, string name, int quantity)
+        public Ingredient(int id, string name, int quantity, CategoryIngredientEnum categoryEnum)
         {
             Id = id;
             Name = name;
             Quantity = quantity;
+            CategoryEnum = categoryEnum;
+
         }
 
         public void Display()
         {
-            throw new NotImplementedException();
+                Console.WriteLine($"Ingredient ID: {Id}");
+                Console.WriteLine($"Name: {Name}");
+                Console.WriteLine($"Quantity: {Quantity}g");
+                Console.WriteLine($"Category: {CategoryEnum}");
         }
+        public static void DisplayIngredients(List<Ingredient> ingredients)
+        {
+            if (ingredients == null || ingredients.Count == 0)
+            {
+                Console.WriteLine("No ingredients available.");
+                return;
+            }
 
+            Console.WriteLine("\nIngredients:");
+            foreach (var ingredient in ingredients)
+            {
+                ingredient.Display();
+                Console.WriteLine();
+            }
+        }
         // Implementacja metody Clone
         public object Clone()
         {
-            return new Ingredient(this.Id, this.Name, this.Quantity);
+            return new Ingredient(this.Id, this.Name, this.Quantity, this.CategoryEnum);
         }
     }
 }
