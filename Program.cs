@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ZTP_projekt.Data.Enum;
 using ZTP_projekt.Model;
 using ZTP_projekt.Data.Enum;
 
@@ -42,12 +43,21 @@ namespace ZTP_projekt
                 new Ingredient(4, "Butter", 100),
                 new Ingredient(5, "Eggs", 3)
             }, 1200);
+            Meal meal = new Meal(1, "meal jakiś", CategoryMealEnum.LUNCH);
+            meal.AddRecipe(recipes[0]);
+            MealDay mealDay=new MealDay(1, DateTime.Now, [meal]);
+            DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
 
-            Console.WriteLine("Original Recipes:");
-            ListRecipes();
-
-            Console.WriteLine("\nEditing Recipe: Pasta Carbonara using Clone");
-            EditRecipeUsingClone(1, "Pasta Carbonara", new List<Ingredient>
+			MealPlan mealPlan = new MealPlan(startDate, startDate.AddDays(6));
+            mealPlan.AddMealDay(mealDay);
+            MealPlanHistory.Instance.AddMealPlan(mealPlan);
+			Console.WriteLine("\nSerializing Recipes to Json...");
+			var jsonConverter = new JsonConverter();
+			jsonConverter.Export("./plik.json");
+            MealPlanHistory.Instance.ClearHistory();
+            jsonConverter.Import("./plik.json");
+			Console.WriteLine("\nEditing Recipe: Pasta Carbonara using Clone");
+            EditRecipeUsingClone(1, "Pasta Carbonara (Updated)", new List<Ingredient>
             {
                 new Ingredient(1, "Whole Grain Pasta", 200),
                 new Ingredient(2, "Eggs", 2),
