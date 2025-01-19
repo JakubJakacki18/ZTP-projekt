@@ -6,13 +6,14 @@ namespace ZTP_projekt.Model
     internal class SummaryObserver : IObserver
     {
         private readonly MealPlan _mealPlan;
-        public int TotalCalories { get; private set; }
+        private ICalculate _calculate;
 
-        public SummaryObserver(MealPlan mealPlan)
+        public SummaryObserver(MealPlan mealPlan, ICalculate calculate)
         {
             _mealPlan = mealPlan;
             _mealPlan.Attach(this);
-        }
+			_calculate = calculate;
+		}
 
         public void Update()
         {
@@ -21,18 +22,11 @@ namespace ZTP_projekt.Model
 
         private void CalculateTotalCalories()
         {
-            TotalCalories = 0;
-
-            foreach (var mealDay in _mealPlan.MealDays)
-            {
-                foreach (var meal in mealDay.Meals)
-                {
-                    foreach (var recipe in meal.Recipes)
-                    {
-                        TotalCalories += recipe.Calories;
-                    }
-                }
-            }
-        }
-    }
+            _calculate.Calculate(_mealPlan);
+		}
+        public void ChangeCalculateStrategy(ICalculate calculate)
+		{
+			_calculate = calculate;
+		}
+	}
 }

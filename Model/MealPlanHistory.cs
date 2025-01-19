@@ -24,13 +24,22 @@ namespace ZTP_projekt.Model
 		{
 
 		}
-		public MealPlan GetMealPlan(int numberOfMealPlan)
+		public MealPlan? GetMealPlan(int numberOfMealPlan)
 		{
-			return mealPlans[numberOfMealPlan];
+			try
+			{
+				return mealPlans[numberOfMealPlan];
+			}
+			catch (ArgumentOutOfRangeException)
+			{
+				Console.WriteLine("Meal plan with this number does not exist");
+				return null;
+			
+			}
 		}
 		public void SaveToFile()
 		{
-
+			
 		}
 		public void LoadFromFile()
 		{
