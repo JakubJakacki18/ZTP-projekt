@@ -4,7 +4,7 @@ using ZTP_projekt.Model;
 
 namespace ZTP_projekt.Model
 {
-
+    // Klasa buildera do tworzenia obiektów Recipe.
     internal class RecipeBuilder
     {
         private int id;
@@ -42,6 +42,7 @@ namespace ZTP_projekt.Model
             return this;
         }
 
+        // Tworzy obiekt Recipe na podstawie zdefiniowanych właściwości.
         public Recipe Build()
         {
             if (string.IsNullOrEmpty(name))

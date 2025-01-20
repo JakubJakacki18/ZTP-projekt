@@ -7,7 +7,8 @@ using ZTP_projekt.Model;
 
 namespace ZTP_projekt.Interface
 {
-	internal interface ICalculate
+    // Interfejs definiujący metodę obliczania wartości dla planu posiłków
+    internal interface ICalculate
 	{
 		decimal Calculate(MealPlan mealPlan);
 	}

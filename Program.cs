@@ -66,12 +66,16 @@ namespace ZTP_projekt
                 shoppingListObserver.DisplayShoppingList();
 
                 // Test 3: Serialize/Deserialize Recipes
+               // MealPlanHistory.Instance.AddMealPlan(mealPlan);
                 Console.WriteLine("\nSerializing Recipes to Json...");
                 var jsonConverter = new JsonConverter();
-                jsonConverter.Export("./plik.json");
-                MealPlanHistory.Instance.ClearHistory();
-                jsonConverter.Import("./plik.json");
+               // jsonConverter.Export("./plik.json");
+              //MealPlanHistory.Instance.ClearHistory();
+                //jsonConverter.Import("./plik.json");
 
+                Console.WriteLine("\nDisplaying Imported Meal Plans:");
+
+                MealPlanHistory.Instance.ShowMealPlan(0);
                 // Test 4: Editing Recipe
                 Console.WriteLine("\nEditing Recipe: Pasta Carbonara using Clone");
                 EditRecipeUsingClone(1, "Whole Grain Pasta Carbonara", new List<Ingredient>
@@ -86,8 +90,7 @@ namespace ZTP_projekt
                 Recipe.DisplayRecipes(recipes);
 
                 Console.WriteLine("\nMeals After Editing Recipe:");
-                Meal.DisplayMeals(meals);
-
+                // Meal.DisplayMeals(meals);
                 // Test 5: Summarize Calories
                 Console.WriteLine("\nSummary of Calories in Meal Plan:");
                 SummaryObserver summaryObserver = new SummaryObserver(mealPlan, new CalculateOverallCaloriesStrategy());

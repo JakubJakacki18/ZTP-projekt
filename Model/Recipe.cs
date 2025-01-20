@@ -77,10 +77,8 @@ namespace ZTP_projekt.Model
         // Statyczna metoda dodająca przepis
         public static void AddRecipe(List<Recipe> recipes, string name, List<Ingredient> ingredients, int calories)
         {
-            // Generowanie ID dla nowego przepisu
             int recipeId = recipes.Count > 0 ? recipes.Max(r => r.Id) + 1 : 1;
 
-            // Tworzenie przepisu za pomocą RecipeBuilder
             var recipe = new RecipeBuilder()
                 .SetId(recipeId)
                 .SetName(name)
@@ -98,7 +96,6 @@ namespace ZTP_projekt.Model
         {
             Recipe clonedRecipe = (Recipe)this.MemberwiseClone();
 
-            // Klonowanie składników przepisu
             clonedRecipe.Ingredients = new List<Ingredient>();
             foreach (var ingredient in this.Ingredients)
             {

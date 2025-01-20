@@ -12,10 +12,11 @@ namespace ZTP_projekt.Model
 		public int Quantity { get; set; }
         public CategoryIngredientEnum CategoryEnum { get; set; }
 
-		[Obsolete("Do not use the parameterless constructor. Ingredient(int id, string name, int quantity)", true)]
-		public Ingredient() { }
+        [Obsolete("Do not use the parameterless constructor. Ingredient(int id, string name, int quantity)", true)]
+        public Ingredient() { }
 
-		public Ingredient(int id, string name, int quantity, CategoryIngredientEnum categoryEnum)
+        // Konstruktor tworzący nowy składnik z podanymi właściwościami.
+        public Ingredient(int id, string name, int quantity, CategoryIngredientEnum categoryEnum)
         {
             Id = id;
             Name = name;
@@ -24,13 +25,16 @@ namespace ZTP_projekt.Model
 
         }
 
+        // Wyświetla szczegóły składnika w konsoli.
         public void Display()
         {
-                Console.WriteLine($"Ingredient ID: {Id}");
-                Console.WriteLine($"Name: {Name}");
-                Console.WriteLine($"Quantity: {Quantity}g");
-                Console.WriteLine($"Category: {CategoryEnum}");
+            Console.WriteLine($"Ingredient ID: {Id}");
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Quantity: {Quantity}g");
+            Console.WriteLine($"Category: {CategoryEnum}");
         }
+
+        // Wyświetla listę składników. Informuje, jeśli lista jest pusta.
         public static void DisplayIngredients(List<Ingredient> ingredients)
         {
             if (ingredients == null || ingredients.Count == 0)
@@ -46,7 +50,7 @@ namespace ZTP_projekt.Model
                 Console.WriteLine();
             }
         }
-        // Implementacja metody Clone
+        // Tworzy klon bieżącego składnika. Kopiuje wszystkie jego właściwości.
         public object Clone()
         {
             return new Ingredient(this.Id, this.Name, this.Quantity, this.CategoryEnum);

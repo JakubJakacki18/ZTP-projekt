@@ -16,19 +16,23 @@ namespace ZTP_projekt.Model
 		public DateTime StartDate { get; private set; } = DateTime.Now;
 		public DateTime EndDate { get; private set; } = DateTime.Now.AddDays(1);
 
-		public MealPlan(DateTime startDate, DateTime endDate)
-		{
-			int daysDifference = (EndDate - StartDate).Days;
-			if (daysDifference < 0)
-			{
-				throw new ArgumentException("End date must be greater than start date");
-			}
-			this.StartDate = startDate;
-			this.EndDate = endDate;
-		}
-		[Obsolete("Do not use the parameterless constructor. MealPlan(DateTime startDate, DateTime endDate)", true)]
-		public MealPlan() { }
+        // Konstruktor przyjmujący datę początkową i końcową planu posiłków
+        public MealPlan(DateTime startDate, DateTime endDate)
+        {
+            int daysDifference = (EndDate - StartDate).Days;
+            if (daysDifference < 0)
+            {
+                throw new ArgumentException("End date must be greater than start date");
+            }
+            this.StartDate = startDate;
+            this.EndDate = endDate;
+        }
 
+        // Konstruktor domyślny oznaczony jako przestarzały
+        [Obsolete("Do not use the parameterless constructor. MealPlan(DateTime startDate, DateTime endDate)", true)]
+        public MealPlan() { }
+
+        // Wyświetla szczegóły planu posiłków
         public void Display()
         {
             Console.WriteLine("\n--- Meal Plan Details ---");
@@ -50,50 +54,53 @@ namespace ZTP_projekt.Model
             }
         }
 
-
+        // Dodaje dzień posiłków do planu
         public void AddMealDay(MealDay mealDay)
-		{
-			int daysDifference = (EndDate - StartDate).Days;
-			if (MealDays.Count() > daysDifference)
-			{
-				throw new ArgumentException("MealPlan is full");
-			}
-			MealDays.Add(mealDay);
-
-
+        {
+            int daysDifference = (EndDate - StartDate).Days;
+            if (MealDays.Count() > daysDifference)
+            {
+                throw new ArgumentException("MealPlan is full");
+            }
+            MealDays.Add(mealDay);
         }
+
+        // Dodaje obserwatora
         public void Attach(IObserver observer)
-		{
-			if (!observers.Contains(observer))
-			{
-				observers.Add(observer);
-			}
-		}
+        {
+            if (!observers.Contains(observer))
+            {
+                observers.Add(observer);
+            }
+        }
 
-		public void Detach(IObserver observer)
-		{
-			if (observers.Contains(observer))
-			{
-				observers.Remove(observer);
-			}
-		}
+        // Usuwa obserwatora
+        public void Detach(IObserver observer)
+        {
+            if (observers.Contains(observer))
+            {
+                observers.Remove(observer);
+            }
+        }
 
-		public void Notify()
-		{
-			foreach (var observer in observers)
-			{
-				observer.Update();
-			}
-		}
+        // Powiadamia obserwatorów o zmianach
+        public void Notify()
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update();
+            }
+        }
 
-		public object Clone()
-		{
-			var clonedMealPlan = new MealPlan(StartDate, EndDate)
-			{
-				MealDays = new List<MealDay>(MealDays)
-			};
+        // Tworzy kopię planu posiłków
+        public object Clone()
+        {
+            var clonedMealPlan = new MealPlan(StartDate, EndDate)
+            {
+                MealDays = new List<MealDay>(MealDays)
+            };
 
-			return clonedMealPlan;
-		}
-	}
+            return clonedMealPlan;
+        }
+    }
 }

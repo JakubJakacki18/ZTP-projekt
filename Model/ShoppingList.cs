@@ -4,6 +4,7 @@ using ZTP_projekt.Data.Enum;
 
 namespace ZTP_projekt.Model
 {
+    // Klasa reprezentująca listę zakupów z podziałem na kategorie składników
     internal class ShoppingList
     {
         public int Id { get; set; }
@@ -15,6 +16,7 @@ namespace ZTP_projekt.Model
             Ingredients = new Dictionary<CategoryIngredientEnum, List<Ingredient>>();
         }
 
+        // Dodaje składniki do listy zakupów
         public void AddIngredients(Dictionary<CategoryIngredientEnum, List<Ingredient>> ingredientsToAdd)
         {
             foreach (var category in ingredientsToAdd)
@@ -41,6 +43,7 @@ namespace ZTP_projekt.Model
             }
         }
 
+        // Wyświetla szczegóły listy zakupów
         public void ShowShoppingList()
         {
             Console.WriteLine("\nShopping List:");

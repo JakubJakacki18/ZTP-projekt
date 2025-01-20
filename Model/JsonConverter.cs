@@ -9,7 +9,8 @@ using ZTP_projekt.Interface;
 
 namespace ZTP_projekt.Model
 {
-	internal class JsonConverter : DataConverter
+    // Klasa odpowiedzialna za konwersję obiektów MealPlan na format JSON i odwrotnie
+    internal class JsonConverter : DataConverter
 	{
 		protected override string Serialize(List<MealPlan> mealPlans)
 		{
