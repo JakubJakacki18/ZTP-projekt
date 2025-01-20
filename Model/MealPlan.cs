@@ -65,7 +65,9 @@ namespace ZTP_projekt.Model
                 throw new ArgumentException("MealPlan is full");
             }
             MealDays.Add(mealDay);
-        }
+            Notify();
+
+		}
 
         // Dodaje obserwatora
         public void Attach(IObserver observer)

@@ -29,7 +29,7 @@ namespace ZTP_projekt.Model
         // Dodaje posiłek do dnia
         public void AddMeal(Meal meal)
         {
-            Meals.Add(meal);
+			Meals.Add(meal);
         }
 
         // Klonowanie obiektu MealDay
@@ -51,8 +51,8 @@ namespace ZTP_projekt.Model
         {
             Console.WriteLine($"\n--- Meal Day Details ---");
             Console.WriteLine($"Meal Day ID: {Id}");
-            Console.WriteLine($"Date: {Date.ToShortDateString()}");
-            Console.WriteLine("Meals:");
+			Console.WriteLine($"Date: {Date.ToString("dddd")}");
+			Console.WriteLine("Meals:");
 
             if (Meals == null || Meals.Count == 0)
             {

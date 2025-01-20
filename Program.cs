@@ -153,7 +153,10 @@ namespace ZTP_projekt
 			summaryObserver.DisplayCalories();
 			summaryObserver.ChangeCalculateStrategy(new CalculateMeanPerDayCaloriesStrategy());
 			summaryObserver.DisplayCalories();
-			MealPlanHistory.Instance.GetMealPlan(0)?.MealDays[0].Meals[0].Recipes[0].SetCalories(1352532);
+
+			
+			MealPlanHistory.Instance.GetMealPlan(0)?.AddMealDay(MealPlanHistory.Instance.GetMealPlan(0)?.MealDays[0] ?? new MealDay(1,DateTime.Now,[]));
+
 			summaryObserver.DisplayCalories();
 		}
 
