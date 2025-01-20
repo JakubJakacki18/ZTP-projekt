@@ -11,6 +11,7 @@ namespace ZTP_projekt.Calculate
     // Klasa implementująca strategię obliczania średniej liczby kalorii na przepis w planie posiłków.
     internal class CalculateMeanPerRecipeCaloriesStrategy : ICalculate
 	{
+		public string TypeOfCalculation => "Mean per recipe";
 		public decimal Calculate(MealPlan mealPlan)
 		{
 			decimal totalCalories = mealPlan.MealDays

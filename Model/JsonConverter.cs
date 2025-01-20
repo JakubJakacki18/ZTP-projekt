@@ -5,7 +5,9 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using ZTP_projekt.Interface;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace ZTP_projekt.Model
 {
@@ -22,7 +24,7 @@ namespace ZTP_projekt.Model
 
 		protected override List<MealPlan> Deserialize(string content)
 		{
-			return JsonSerializer.Deserialize<List<MealPlan>>(content) ?? [];
+			return JsonConvert.DeserializeObject<List<MealPlan>>(content) ?? [];
 		}
 	}
 }

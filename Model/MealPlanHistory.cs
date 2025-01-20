@@ -43,10 +43,19 @@ namespace ZTP_projekt.Model
                     mealDay.Display();
                 }
             }
-        }
+		}
+		// Wyświetla wszystkie zapisane plany posiłków.
+		public void ShowMealPlans()
+		{
+			for (int i = 0; i < mealPlans.Count; i++)
+			{
+				Console.WriteLine($"Meal plan {i}");
+				mealPlans[i].Display();
+			}
+		}
 
-        // Nadpisuje historię planów posiłków nową listą.
-        public void OverrideMealPlanHistory(List<MealPlan> mealPlans)
+		// Nadpisuje historię planów posiłków nową listą.
+		public void OverrideMealPlanHistory(List<MealPlan> mealPlans)
         {
             this.mealPlans = mealPlans;
         }
@@ -70,5 +79,17 @@ namespace ZTP_projekt.Model
         {
             mealPlans.Clear();
         }
+
+		// Kopiuje plan posiłków na podstawie numeru planu oraz daty rozpoczęcia nowego planu.
+		public void CopyMealPlan(int numberOfMealPlan,DateTime startDate) 
+        {
+			var mealPlan = GetMealPlan(numberOfMealPlan);
+            if (mealPlan == null)
+                return;
+			MealPlan newMealPlan = (MealPlan)mealPlan.Clone();
+            newMealPlan.ChangeStartDate(startDate);
+			AddMealPlan(newMealPlan);
+
+		}
     }
 }
