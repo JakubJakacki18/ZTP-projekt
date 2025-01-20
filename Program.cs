@@ -20,6 +20,7 @@ namespace ZTP_projekt
                 Console.WriteLine("Recipe and Meal Builder Program\n");
 
                 // Test 1: Adding Recipes
+                Console.WriteLine("Test 1: Adding Recipes\n\n\n");
                 AddRecipe("Pasta Carbonara", new List<Ingredient>
                 {
                     new Ingredient(1, "Pasta", 200, CategoryIngredientEnum.BAKERY),
@@ -50,6 +51,7 @@ namespace ZTP_projekt
                 Recipe.DisplayRecipes(recipes);
 
                 // Test 2: Adding Meal Plan
+				Console.WriteLine("Test 2: Adding Meal Plan and ShoppingListObserver\n\n\n");
                 var startDate = DateTime.Now;
 				MealPlan mealPlan = new MealPlan(startDate, startDate.AddDays(6));
                 var shoppingListObserver = new ShoppingListObserver(mealPlan);
@@ -65,14 +67,16 @@ namespace ZTP_projekt
                 Console.WriteLine("\nDisplaying Shopping List After Adding Meals:");
                 shoppingListObserver.DisplayShoppingList();
 
+				MealPlanHistory.Instance.AddMealPlan(mealPlan);
+                MealPlanHistory.Instance.ShowMealPlans();
                 // Test 3: Serialize/Deserialize Recipes
                // MealPlanHistory.Instance.AddMealPlan(mealPlan);
                 Console.WriteLine("\nSerializing Recipes to Json...");
                 var jsonConverter = new JsonConverter();
-               // jsonConverter.Export("./plik.json");
-              //MealPlanHistory.Instance.ClearHistory();
+				//jsonConverter.Export("./plik.json");
+			 //   MealPlanHistory.Instance.ClearHistory();
                 //jsonConverter.Import("./plik.json");
-
+				//MealPlanHistory.Instance.ShowMealPlans();
                 Console.WriteLine("\nDisplaying Imported Meal Plans:");
 
                 MealPlanHistory.Instance.ShowMealPlan(0);
@@ -92,9 +96,10 @@ namespace ZTP_projekt
                 Console.WriteLine("\nMeals After Editing Recipe:");
                 // Meal.DisplayMeals(meals);
                 // Test 5: Summarize Calories
+				MealPlanHistory.Instance.ShowMealPlan(0);
                 Console.WriteLine("\nSummary of Calories in Meal Plan:");
                 SummaryObserver summaryObserver = new SummaryObserver(mealPlan, new CalculateOverallCaloriesStrategy());
-                summaryObserver.DisplayTotalCalories();
+                summaryObserver.DisplayCalories();
             }
             catch (Exception ex)
             {
