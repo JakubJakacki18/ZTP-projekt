@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ZTP_projekt.Model.DataConverter">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAIAAABAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\DataConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZTP_projekt.Model.Ingredient" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAABAAAAAAAAQQAACAAAAAAAAAAgAAAABA=</HashCode>
+      <FileName>Model\Ingredient.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ZTP_projekt.Model.JsonConverter">
+    <Position X="4.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\JsonConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZTP_projekt.Model.Meal" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAIQQAACAAAAAAAEAAAAAAABg=</HashCode>
+      <FileName>Model\Meal.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Recipes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ZTP_projekt.Model.MealDay" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="0.75" Width="1.5" />
+    <AssociationLine Name="Meals" Type="ZTP_projekt.Model.Meal">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.003" Y="0.554" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAIAAAAAAAAAAQAAAAAAAAABAAAAAAAAABA=</HashCode>
+      <FileName>Model\MealDay.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Meals" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ZTP_projekt.Model.MealPlan" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAAAAIAAAAAAQAgAYAAAABQAAAAAEAAABA=</HashCode>
+      <FileName>Model\MealPlan.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="MealDays" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ZTP_projekt.Model.MealPlanHistory">
+    <Position X="11.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAgAAAABgAQAAAASAgAAAABAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Model\MealPlanHistory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="mealPlans" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ZTP_projekt.Model.Recipe" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQCAAAAAIAAIAAAAAAAASQAACAAAAAAAAAAAAAAQFA=</HashCode>
+      <FileName>Model\Recipe.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Ingredients" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ZTP_projekt.Model.RecipeBuilder">
+    <Position X="14.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAIAAAIAAAAAAAAAAEwAAAAAAAQCAAAgA=</HashCode>
+      <FileName>Model\RecipeBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZTP_projekt.Model.ShoppingList">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAACAAAAAAUAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ShoppingList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZTP_projekt.Model.ShoppingListObserver" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AARBAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ShoppingListObserver.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_mealPlan" />
+      <Field Name="_shoppingList" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ZTP_projekt.Model.SummaryObserver" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AASBAAAAAAQAAAAAAQAAAAAAAAAAAAAAAAAIACAAAAA=</HashCode>
+      <FileName>Model\SummaryObserver.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_mealPlan" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ZTP_projekt.Model.YAMLConverter">
+    <Position X="1.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\YAMLConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZTP_projekt.Calculate.CalculateMeanPerDayCaloriesStrategy" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Calculate\CalculateMeanPerDayCaloriesStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ZTP_projekt.Calculate.CalculateMeanPerRecipeCaloriesStrategy" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Calculate\CalculateMeanPerRecipeCaloriesStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ZTP_projekt.Calculate.CalculateOverallCaloriesStrategy" BaseTypeListCollapsed="true">
+    <Position X="7" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Calculate\CalculateOverallCaloriesStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ZTP_projekt.Interface.ICalculate">
+    <Position X="8.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\ICalculate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ZTP_projekt.Interface.ICloneable">
+    <Position X="19" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Interface\ICloneable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ZTP_projekt.Interface.IObserver">
+    <Position X="6.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IObserver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ZTP_projekt.Interface.ISubject">
+    <Position X="13" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAIAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\ISubject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
