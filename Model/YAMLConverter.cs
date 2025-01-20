@@ -17,7 +17,7 @@ namespace ZTP_projekt.Model
 {
 	internal class YAMLConverter : DataConverter
 	{
-		
+		// Klasa odpowiedzialna za konwersję obiektów MealPlan na format YAML i odwrotnie
 		protected override string Serialize(List<MealPlan> mealPlans)
 		{
 			//var serializer = new SerializerBuilder()

@@ -102,5 +102,13 @@ namespace ZTP_projekt.Model
 
             return clonedMealPlan;
         }
-    }
+
+		// Zmienia datę początkową planu posiłków
+		public void ChangeStartDate(DateTime startDate)
+		{
+            var timeDifference = (EndDate- StartDate).Days;
+			StartDate = startDate;
+			EndDate = StartDate.AddDays(timeDifference);
+		}
+	}
 }
