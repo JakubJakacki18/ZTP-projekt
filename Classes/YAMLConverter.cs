@@ -1,4 +1,4 @@
-﻿using System;
+﻿	using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -20,22 +20,12 @@ namespace ZTP_projekt.Model
 		// Klasa odpowiedzialna za konwersję obiektów MealPlan na format YAML i odwrotnie
 		protected override string Serialize(List<MealPlan> mealPlans)
 		{
-			//var serializer = new SerializerBuilder()
-			// .WithNamingConvention(CamelCaseNamingConvention.Instance)
-			// .Build();
-
-			//return serializer.Serialize(mealPlans);
 			var serializer = new Serializer();
 			return serializer.Serialize(mealPlans);
 		}
 
 		protected override List<MealPlan> Deserialize(string data)
 		{
-			//var deserializer = new DeserializerBuilder()
-			// .WithNamingConvention(CamelCaseNamingConvention.Instance) 
-			// .Build();
-
-			//return deserializer.Deserialize<List<MealPlan>>(data);
 			var serializer = new Serializer();
 			return serializer.Deserialize<List<MealPlan>>(data) ?? [];
 		}
