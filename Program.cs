@@ -20,36 +20,13 @@ namespace ZTP_projekt
         {
             try
             {
-                Console.WriteLine("Recipe and Meal Builder Program\n");
+                Console.WriteLine("Meal Planner\n");
                 List<Action> tests = [Test1, Test2, Test3,Test4,Test5];
 				foreach (var test in tests)
 				{
 					ExecuteWithReadKey(test);
 				}
 
-
-
-
-
-				
-                // Test 3: Serialize/Deserialize Recipes
-                // MealPlanHistory.Instance.AddMealPlan(mealPlan);
-                Console.WriteLine("\nSerializing Recipes to Json...");
-                var jsonConverter = new JsonConverter();
-				//jsonConverter.Export("./plik.json");
-			 //   MealPlanHistory.Instance.ClearHistory();
-                //jsonConverter.Import("./plik.json");
-				//MealPlanHistory.Instance.ShowMealPlans();
-                Console.WriteLine("\nDisplaying Imported Meal Plans:");
-
-                MealPlanHistory.Instance.ShowMealPlan(0);
-
-                // Meal.DisplayMeals(meals);
-                // Test 5: Summarize Calories
-				MealPlanHistory.Instance.ShowMealPlan(0);
-                Console.WriteLine("\nSummary of Calories in Meal Plan:");
-                SummaryObserver summaryObserver = new SummaryObserver(mealPlan, new CalculateOverallCaloriesStrategy());
-                summaryObserver.DisplayCalories();
             }
             catch (Exception ex)
             {
