@@ -46,7 +46,7 @@ namespace ZTP_projekt
 			Console.WriteLine("\n\n\nTest 1: Adding Recipes\n\n\n");
 			AddRecipe("Pasta Carbonara", new List<Ingredient>
 				{
-					new Ingredient(1, "Pasta", 200, CategoryIngredientEnum.BAKERY),
+					new Ingredient(1, "Pasta", 200, CategoryIngredientEnum.OTHER),
 					new Ingredient(2, "Eggs", 2, CategoryIngredientEnum.DAIRY),
 					new Ingredient(3, "Parmesan Cheese", 50, CategoryIngredientEnum.DAIRY),
 					new Ingredient(4, "Pancetta", 100, CategoryIngredientEnum.MEAT)
@@ -63,7 +63,7 @@ namespace ZTP_projekt
 
 			AddRecipe("Chocolate Cake", new List<Ingredient>
 				{
-					new Ingredient(1, "Flour", 250, CategoryIngredientEnum.BAKERY),
+					new Ingredient(1, "Flour", 250, CategoryIngredientEnum.OTHER),
 					new Ingredient(2, "Cocoa Powder", 50, CategoryIngredientEnum.SPICE),
 					new Ingredient(3, "Sugar", 200, CategoryIngredientEnum.OTHER),
 					new Ingredient(4, "Butter", 100, CategoryIngredientEnum.DAIRY),
