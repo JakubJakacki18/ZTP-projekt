@@ -20,7 +20,7 @@ namespace ZTP_projekt.Calculate
 				.SelectMany(mealDay => mealDay.Meals)
 				.SelectMany(meal => meal.Recipes)
 				.Sum(recipe => recipe.Calories);
-			totalCalories /= mealPlan.MealDays.Count;
+			totalCalories /= mealPlan.GetMealPlanLength();
 			return totalCalories;
 		}
 	}

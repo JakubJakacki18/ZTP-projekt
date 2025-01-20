@@ -34,7 +34,8 @@ namespace ZTP_projekt.Model
         public void ChangeCalculateStrategy(ICalculate calculate)
         {
             _calculate = calculate;
-        }
+			Update();
+		}
 
         // Wyświetla całkowitą liczbę kalorii dla planu posiłków.
         public void DisplayCalories()

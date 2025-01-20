@@ -27,9 +27,11 @@ namespace ZTP_projekt.Model
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
-
-        // Konstruktor domyślny oznaczony jako przestarzały
-        [Obsolete("Do not use the parameterless constructor. MealPlan(DateTime startDate, DateTime endDate)", true)]
+        //liczenie dni
+        public int GetMealPlanLength()
+		 => (EndDate - StartDate).Days;
+		// Konstruktor domyślny oznaczony jako przestarzały
+		[Obsolete("Do not use the parameterless constructor. MealPlan(DateTime startDate, DateTime endDate)", true)]
         public MealPlan() { }
 
         // Wyświetla szczegóły planu posiłków
@@ -39,7 +41,7 @@ namespace ZTP_projekt.Model
             Console.WriteLine($"Meal Plan ID: {Id}");
             Console.WriteLine($"Start Date: {StartDate}");
             Console.WriteLine($"End Date: {EndDate}");
-            Console.WriteLine($"Total Days: {(EndDate - StartDate).Days + 1}");
+            Console.WriteLine($"Total Days: {(EndDate - StartDate).Days}");
             Console.WriteLine("Meal Days:");
 
             if (!MealDays.Any())
