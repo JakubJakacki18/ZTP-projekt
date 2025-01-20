@@ -9,16 +9,19 @@ namespace ZTP_projekt.Model
         private static readonly MealPlanHistory _instance = new MealPlanHistory();
         public static MealPlanHistory Instance => _instance;
 
+        // Zwraca listę wszystkich zapisanych planów posiłków.
         public List<MealPlan> GetAllMealPlans()
         {
             return mealPlans;
         }
 
+        // Dodaje nowy plan posiłków do historii.
         public void AddMealPlan(MealPlan mealPlan)
         {
             mealPlans.Add(mealPlan);
         }
 
+        // Wyświetla plan posiłków na podstawie numeru planu.
         public void ShowMealPlan(int numberOfMealPlan)
         {
             var mealPlan = GetMealPlan(numberOfMealPlan);
@@ -28,6 +31,7 @@ namespace ZTP_projekt.Model
             }
         }
 
+        // Wyświetla plan posiłków oraz szczegóły dla danego dnia w planie.
         public void ShowMealPlan(int numberOfMealPlan, int dayOfMealPlan)
         {
             var mealPlan = GetMealPlan(numberOfMealPlan);
@@ -41,11 +45,13 @@ namespace ZTP_projekt.Model
             }
         }
 
+        // Nadpisuje historię planów posiłków nową listą.
         public void OverrideMealPlanHistory(List<MealPlan> mealPlans)
         {
             this.mealPlans = mealPlans;
         }
 
+        // Zwraca plan posiłków na podstawie numeru, lub `null` jeśli numer jest niepoprawny.
         public MealPlan? GetMealPlan(int numberOfMealPlan)
         {
             try
@@ -59,6 +65,7 @@ namespace ZTP_projekt.Model
             }
         }
 
+        // Czyści historię zapisanych planów posiłków.
         internal void ClearHistory()
         {
             mealPlans.Clear();
