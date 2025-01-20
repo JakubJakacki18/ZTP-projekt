@@ -6,13 +6,15 @@ using ICloneable = ZTP_projekt.Interface.ICloneable;
 
 namespace ZTP_projekt.Model
 {
-internal class Meal : IMealComposite,  ICloneable
+    // Klasa reprezentująca posiłek, zawierająca listę przepisów i kategorię posiłku.
+    internal class Meal : IMealComposite,  ICloneable
 	{
         public int Id { get; set; }
         public string Name { get; set; } = "";
         public List<Recipe> Recipes { get; set; } = [];  
         public CategoryMealEnum CategoryMeal { get; set; }
 
+        // Konstruktor tworzący nowy obiekt `Meal` z określonymi parametrami.
         public Meal(int id, string name, CategoryMealEnum categoryMeal)
         {
             Id = id;
@@ -20,14 +22,18 @@ internal class Meal : IMealComposite,  ICloneable
             CategoryMeal = categoryMeal;
             Recipes = new List<Recipe>();
         }
-		[Obsolete("Do not use the parameterless constructor. Meal(int id, string name, CategoryMealEnum categoryMeal)", true)]
+
+        // Konstruktor domyślny - oznaczony jako przestarzały i niedostępny do użycia.
+        [Obsolete("Do not use the parameterless constructor. Meal(int id, string name, CategoryMealEnum categoryMeal)", true)]
 		public Meal() { }
 
-		public void AddRecipe(Recipe recipe)
+        // Dodaje przepis do listy przepisów w posiłku.
+        public void AddRecipe(Recipe recipe)
         {
             Recipes.Add(recipe);
         }
 
+        // Wyświetla szczegóły posiłku, w tym jego nazwę, kategorię i przepisy.
         public void Display()
         {
             Console.WriteLine($"\nMeal ID: {Id}");
@@ -40,6 +46,7 @@ internal class Meal : IMealComposite,  ICloneable
             }
         }
 
+        // Tworzy kopię obiektu `Meal`, w tym również kopie jego przepisów.
         public object Clone()
         {
             Meal clonedMeal = (Meal)this.MemberwiseClone();
@@ -53,6 +60,7 @@ internal class Meal : IMealComposite,  ICloneable
             return clonedMeal;
         }
 
+        // Wyświetla listę posiłków wraz z ich szczegółami.
         public static void DisplayMeals(List<Meal> meals)
         {
             if (meals == null || meals.Count == 0)

@@ -8,22 +8,26 @@ internal class ShoppingListObserver : IObserver
     public Dictionary<CategoryIngredientEnum, List<Ingredient>> Ingredients { get; private set; } = new();
     public List<string> ShoppingList { get; private set; } = new();
 
+    // Konstruktor klasy ShoppingListObserver. Rejestruje ten obserwator w przekazanym obiekcie MealPlan.
     public ShoppingListObserver(MealPlan mealPlan)
     {
         _mealPlan = mealPlan;
         _mealPlan.Attach(this);
     }
 
+    // Generuje nową listę zakupów.
     public void Update()
     {
         GenerateShoppingList();
     }
 
+    // Czyści aktualną listę zakupów.
     public void ClearShoppingList()
     {
         ShoppingList.Clear();
     }
 
+    // Generuje listę zakupów na podstawie posiłków w MealPlan. Grupuje składniki według kategorii oraz sumuje ich ilość.
     private void GenerateShoppingList()
     {
         Ingredients.Clear();
@@ -45,6 +49,7 @@ internal class ShoppingListObserver : IObserver
             .ToList();
     }
 
+    // Wyświetla listę zakupów w konsoli.
     public void DisplayShoppingList()
     {
         Console.WriteLine("\nShopping List:");

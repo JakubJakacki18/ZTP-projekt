@@ -8,7 +8,8 @@ using ZTP_projekt.Model;
 
 namespace ZTP_projekt.Calculate
 {
-	internal class CalculateMeanPerDayCaloriesStrategy : ICalculate
+    // Oblicza średnią liczbę kalorii na dzień w planie posiłków
+    internal class CalculateMeanPerDayCaloriesStrategy : ICalculate
 	{
 		public decimal Calculate(MealPlan mealPlan)
 		{
