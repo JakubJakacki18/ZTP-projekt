@@ -47,7 +47,12 @@ namespace ZTP_projekt.Model
 		// Wyświetla wszystkie zapisane plany posiłków.
 		public void ShowMealPlans()
 		{
-			for (int i = 0; i < mealPlans.Count; i++)
+            if (mealPlans.Count == 0)
+            {
+                Console.WriteLine("Data not available");
+                return;
+            }
+            for (int i = 0; i < mealPlans.Count; i++)
 			{
 				Console.WriteLine($"Meal plan {i}");
 				mealPlans[i].Display();

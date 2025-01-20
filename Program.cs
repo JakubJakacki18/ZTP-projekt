@@ -21,7 +21,7 @@ namespace ZTP_projekt
             try
             {
                 Console.WriteLine("Recipe and Meal Builder Program\n");
-                List<Action> tests = [Test1, Test2, Test3,Test4];
+                List<Action> tests = [Test1, Test2, Test3,Test4,Test5];
 				foreach (var test in tests)
 				{
 					ExecuteWithReadKey(test);
@@ -65,7 +65,7 @@ namespace ZTP_projekt
 
 		static void Test1() 
         {
-			// Test 1: Adding Recipes
+			// Test 1: Adding Recipes (Bulder)
 			Console.WriteLine("\n\n\nTest 1: Adding Recipes\n\n\n");
 			AddRecipe("Pasta Carbonara", new List<Ingredient>
 				{
@@ -98,7 +98,7 @@ namespace ZTP_projekt
 		}
         static void Test2() 
         {
-			// Test 2: Adding Meal Plan
+			// Test 2: Adding Meal Plan (Singleton, Observer)
 			Console.WriteLine("\n\n\nTest 2: Adding Meal Plan and ShoppingListObserver\n\n\n");
 			var startDate = DateTime.Now;
 			
@@ -116,7 +116,6 @@ namespace ZTP_projekt
 			mealPlan.AddMealDay(mealDay);
 
 			Console.WriteLine("\nDisplaying Shopping List After Adding Meals:");
-			shoppingListObserver.Update(); // Wywołujemy aktualizację
 			shoppingList.ShowShoppingList();
 
 
@@ -126,7 +125,7 @@ namespace ZTP_projekt
 		}
 		static void Test3()
 		{
-			// Test 3: Editing Recipe
+			// Test 3: Editing Recipe (Prototype)
 			Console.WriteLine("\n\n\n Test 3: Editing Recipe\n\n\n");
 			Console.WriteLine("\nEditing Recipe: Pasta Carbonara using Clone");
 			EditRecipeUsingClone(1, "Whole Grain Pasta Carbonara", new List<Ingredient>
@@ -140,12 +139,12 @@ namespace ZTP_projekt
 			Console.WriteLine("\nRecipes After Editing:");
 			Recipe.DisplayRecipes(recipes);
 
-			Console.WriteLine("\nMeals After Editing Recipe:");
+			//Console.WriteLine("\nMeals After Editing Recipe:");
 			// Meal.DisplayMeals(meals);
 		}
 		static void Test4()
 		{
-			// Test 4: Summarize Calories
+			// Test 4: Summarize Calories (Observer, Strategy)
 			Console.WriteLine("\n\n\nTest 4: Summarize Calories\n\n\n");
 			MealPlanHistory.Instance.ShowMealPlan(0);
 			Console.WriteLine("\nSummary of Calories in Meal Plan:");
@@ -159,7 +158,29 @@ namespace ZTP_projekt
 
 			summaryObserver.DisplayCalories();
 		}
+		static void Test5() 
+		{
+			// Test 5: Import/Export MealPlanHistory (Template)
+			Console.WriteLine("\n\n\nTest 5: Import/Export MealPlanHistory\n\n\n");
+			Console.WriteLine("\nSerializing");
+			var jsonConverter = new JsonConverter();
+			var yamlConverter = new YAMLConverter();
+			jsonConverter.Export("./plik.json");
+			yamlConverter.Export("./plik.yaml");
+			MealPlanHistory.Instance.ClearHistory();
+			Console.WriteLine("\nClearHistory");
+			MealPlanHistory.Instance.ShowMealPlans();
+            Console.WriteLine("\n Import json\n");
+            jsonConverter.Import("./plik.json");
+			MealPlanHistory.Instance.ShowMealPlans();
+			MealPlanHistory.Instance.ClearHistory();
+			Console.WriteLine("\nClearHistory");
+			MealPlanHistory.Instance.ShowMealPlans();
+			Console.WriteLine("\n Import yaml\n");
+			yamlConverter.Import("./plik.yaml");
+			MealPlanHistory.Instance.ShowMealPlans();
 
+		}
 
 
 		static void AddRecipe(string name, List<Ingredient> ingredients, int calories)

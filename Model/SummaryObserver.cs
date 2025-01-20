@@ -40,7 +40,7 @@ namespace ZTP_projekt.Model
         // Wyświetla całkowitą liczbę kalorii dla planu posiłków.
         public void DisplayCalories()
         {
-            Console.WriteLine($"{_calculate.TypeOfCalculation} calories for the Meal Plan: {_totalCalories} kcal");
+            Console.WriteLine($"{_calculate.TypeOfCalculation} calories for the Meal Plan: {_totalCalories:F2} kcal");
         }
     }
 }
