@@ -7,13 +7,15 @@ namespace ZTP_projekt.Model
     {
         private readonly MealPlan _mealPlan;
         private ICalculate _calculate;
+        private decimal _totalCalories;
 
-        // Konstruktor wiążący obserwatora z planem posiłków i strategią kalkulacji.
-        public SummaryObserver(MealPlan mealPlan, ICalculate calculate)
+		// Konstruktor wiążący obserwatora z planem posiłków i strategią kalkulacji.
+		public SummaryObserver(MealPlan mealPlan, ICalculate calculate)
         {
             _mealPlan = mealPlan;
             _mealPlan.Attach(this);
             _calculate = calculate;
+            Update();
         }
 
         // Aktualizuje obserwatora i oblicza całkowite kalorie.
@@ -25,7 +27,7 @@ namespace ZTP_projekt.Model
         // Oblicza całkowitą liczbę kalorii za pomocą strategii kalkulacji.
         private void CalculateTotalCalories()
         {
-            _calculate.Calculate(_mealPlan);
+            _totalCalories = _calculate.Calculate(_mealPlan);
         }
 
         // Zmienia strategię kalkulacji kalorii.
@@ -35,22 +37,9 @@ namespace ZTP_projekt.Model
         }
 
         // Wyświetla całkowitą liczbę kalorii dla planu posiłków.
-        public void DisplayTotalCalories()
+        public void DisplayCalories()
         {
-            int totalCalories = 0;
-
-            foreach (var mealDay in _mealPlan.MealDays)
-            {
-                foreach (var meal in mealDay.Meals)
-                {
-                    foreach (var recipe in meal.Recipes)
-                    {
-                        totalCalories += recipe.Calories;
-                    }
-                }
-            }
-
-            Console.WriteLine($"Total Calories for the Meal Plan: {totalCalories} kcal");
+            Console.WriteLine($"{_calculate.TypeOfCalculation} calories for the Meal Plan: {_totalCalories} kcal");
         }
     }
 }

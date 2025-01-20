@@ -11,6 +11,7 @@ namespace ZTP_projekt.Calculate
     // Klasa implementująca strategię obliczania całkowitej liczby kalorii w planie posiłków.
     internal class CalculateOverallCaloriesStrategy : ICalculate
 	{
+		public string TypeOfCalculation => "Overall";
 		public decimal Calculate(MealPlan mealPlan)
 			=> mealPlan.MealDays
 				.SelectMany(mealDay => mealDay.Meals)

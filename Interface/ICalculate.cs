@@ -11,5 +11,6 @@ namespace ZTP_projekt.Interface
     internal interface ICalculate
 	{
 		decimal Calculate(MealPlan mealPlan);
+		string TypeOfCalculation { get; }
 	}
 }
