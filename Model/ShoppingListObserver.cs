@@ -1,91 +1,62 @@
-﻿using ZTP_projekt.Data.Enum;
-using ZTP_projekt.Model;
-using IObserver = ZTP_projekt.Interface.IObserver;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using ZTP_projekt.Data.Enum;
+using ZTP_projekt.Interface;
 
-internal class ShoppingListObserver : IObserver
+namespace ZTP_projekt.Model
 {
-    private readonly MealPlan _mealPlan;
-    public Dictionary<CategoryIngredientEnum, List<Ingredient>> Ingredients { get; private set; } = new();
-    public List<string> ShoppingList { get; private set; } = new();
-
-    // Konstruktor klasy ShoppingListObserver. Rejestruje ten obserwator w przekazanym obiekcie MealPlan.
-    public ShoppingListObserver(MealPlan mealPlan)
+    internal class ShoppingListObserver : IObserver
     {
-        _mealPlan = mealPlan;
-        _mealPlan.Attach(this);
-    }
+        private readonly MealPlan _mealPlan;
+        private readonly ShoppingList _shoppingList;
 
-    // Generuje nową listę zakupów.
-    public void Update()
-    {
-        GenerateShoppingList();
-    }
-
-    // Czyści aktualną listę zakupów.
-    public void ClearShoppingList()
-    {
-        ShoppingList.Clear();
-    }
-
-    // Generuje listę zakupów na podstawie posiłków w MealPlan. Grupuje składniki według kategorii oraz sumuje ich ilość.
-    private void GenerateShoppingList()
-    {
-        Ingredients.Clear();
-        var groupedIngredients = _mealPlan.MealDays
-            .SelectMany(mealDay => mealDay.Meals)
-            .SelectMany(meal => meal.Recipes)
-            .SelectMany(recipe => recipe.Ingredients)
-            .GroupBy(ingredient => ingredient.CategoryEnum);
-
-        foreach (var category in groupedIngredients)
+        public ShoppingListObserver(MealPlan mealPlan, ShoppingList shoppingList)
         {
-            Ingredients[category.Key] = category.ToList();
+            _mealPlan = mealPlan;
+            _shoppingList = shoppingList;
+            _mealPlan.Attach(this);
         }
 
-        ShoppingList = Ingredients
-            .SelectMany(kvp => kvp.Value)
-            .GroupBy(ingredient => ingredient.Name)
-            .Select(group => $"{group.Key} ({group.Sum(ingredient => ingredient.Quantity)}g)")
-            .ToList();
-    }
-
-    // Wyświetla listę zakupów w konsoli.
-    public void DisplayShoppingList()
-    {
-        Console.WriteLine("\nShopping List:");
-        var shoppingList = new Dictionary<string, int>();
-
-        foreach (var mealDay in _mealPlan.MealDays)
+        public void Update()
         {
-            foreach (var meal in mealDay.Meals)
+            UpdateShoppingList();
+        }
+
+        private void UpdateShoppingList()
+        {
+            var ingredientsToAdd = new Dictionary<CategoryIngredientEnum, List<Ingredient>>();
+
+            foreach (var mealDay in _mealPlan.MealDays)
             {
-                foreach (var recipe in meal.Recipes)
+                foreach (var meal in mealDay.Meals)
                 {
-                    foreach (var ingredient in recipe.Ingredients)
+                    foreach (var recipe in meal.Recipes)
                     {
-                        if (shoppingList.ContainsKey(ingredient.Name))
+                        foreach (var ingredient in recipe.Ingredients)
                         {
-                            shoppingList[ingredient.Name] += ingredient.Quantity;
-                        }
-                        else
-                        {
-                            shoppingList[ingredient.Name] = ingredient.Quantity;
+                            if (!ingredientsToAdd.ContainsKey(ingredient.CategoryEnum))
+                            {
+                                ingredientsToAdd[ingredient.CategoryEnum] = new List<Ingredient>();
+                            }
+
+                            var existingIngredient = ingredientsToAdd[ingredient.CategoryEnum]
+                                .FirstOrDefault(i => i.Name == ingredient.Name);
+
+                            if (existingIngredient != null)
+                            {
+                                existingIngredient.Quantity += ingredient.Quantity;
+                            }
+                            else
+                            {
+                                ingredientsToAdd[ingredient.CategoryEnum].Add((Ingredient)ingredient.Clone());
+                            }
                         }
                     }
                 }
             }
-        }
 
-        if (shoppingList.Count == 0)
-        {
-            Console.WriteLine("No ingredients in the shopping list.");
-        }
-        else
-        {
-            foreach (var item in shoppingList)
-            {
-                Console.WriteLine($"- {item.Key} ({item.Value}g)");
-            }
+            _shoppingList.AddIngredients(ingredientsToAdd);
         }
     }
 }

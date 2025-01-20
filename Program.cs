@@ -52,7 +52,10 @@ namespace ZTP_projekt
                 // Test 2: Adding Meal Plan
                 var startDate = DateTime.Now;
 				MealPlan mealPlan = new MealPlan(startDate, startDate.AddDays(6));
-                var shoppingListObserver = new ShoppingListObserver(mealPlan);
+
+
+                ShoppingList shoppingList = new ShoppingList(1);
+                ShoppingListObserver shoppingListObserver = new ShoppingListObserver(mealPlan, shoppingList);
 
                 Meal meal1 = new Meal(currentMealId++, "Italian Dinner", CategoryMealEnum.DINNER);
                 meal1.AddRecipe(recipes[0]);
@@ -63,10 +66,13 @@ namespace ZTP_projekt
                 mealPlan.AddMealDay(mealDay);
 
                 Console.WriteLine("\nDisplaying Shopping List After Adding Meals:");
-                shoppingListObserver.DisplayShoppingList();
+                shoppingListObserver.Update(); // Wywołujemy aktualizację
+                shoppingList.ShowShoppingList();
+
+
 
                 // Test 3: Serialize/Deserialize Recipes
-               // MealPlanHistory.Instance.AddMealPlan(mealPlan);
+                // MealPlanHistory.Instance.AddMealPlan(mealPlan);
                 Console.WriteLine("\nSerializing Recipes to Json...");
                 var jsonConverter = new JsonConverter();
                // jsonConverter.Export("./plik.json");
